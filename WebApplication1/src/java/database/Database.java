@@ -9,7 +9,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class Conexion {
+public class Database {
 
     public static final String USERNAME = "team15";
     public static final String PASSWORD = "go!f9";
@@ -21,7 +21,7 @@ public class Conexion {
 
     public java.sql.Connection con;
 
-    public Conexion() {
+    public Database() {
 
         try {
             Class.forName(CLASSNAME);

@@ -5,7 +5,7 @@
  */
 package Controller;
 
-import database.Conexion;
+import database.Database;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.PreparedStatement;
@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author perezcx
  */
+@WebServlet(name = "Controller", urlPatterns = {"/control"})
 public class Controller extends HttpServlet {
 
     /**
@@ -38,7 +40,7 @@ public class Controller extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         String username = request.getParameter("regusername");
-        Conexion connect = new Conexion(); 
+        Database connect = new Database(); 
         
         //Statement st = connect.con.createStatement(); 
           String sql = "INSERT INTO CategoryTable VALUES(?,?,?)";
@@ -53,8 +55,9 @@ public class Controller extends HttpServlet {
          
          sts.executeUpdate(); 
   
-        try {
+  //      try {
             /* TODO output your page here. You may use following sample code. */
+         /*
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -66,7 +69,10 @@ public class Controller extends HttpServlet {
             out.println("</html>");
         } finally {
             out.close();
-        }
+        }*/
+         
+         sts.close();
+         connect.con.close();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
