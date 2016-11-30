@@ -41,8 +41,9 @@ public class Controller extends HttpServlet {
         PrintWriter out = response.getWriter();
         String username = request.getParameter("regusername");
         Database connect = new Database(); 
-        
+        connect.RgisterUserFunction();
         //Statement st = connect.con.createStatement(); 
+        /**
           String sql = "INSERT INTO CategoryTable VALUES(?,?,?)";
          PreparedStatement sts = connect.con.prepareStatement(sql);
          int id = 1; 
@@ -54,6 +55,7 @@ public class Controller extends HttpServlet {
          sts.setString(3, note);
          
          sts.executeUpdate(); 
+         **/
   
   //      try {
             /* TODO output your page here. You may use following sample code. */
@@ -71,8 +73,8 @@ public class Controller extends HttpServlet {
             out.close();
         }*/
          
-         sts.close();
-         connect.con.close();
+         //ts.close();
+        // connect.con.close();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

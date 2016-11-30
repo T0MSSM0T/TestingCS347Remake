@@ -5,6 +5,7 @@
  */
 package database;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -19,10 +20,10 @@ public class Database {
     public static final String CLASSNAME = "com.mysql.jdbc.Driver";
     public static final String URL = "jdbc:mysql://grove.cs.jmu.edu:3306/team15_db"; //+ HOST + ":" + PORT + "/" + DATABASE;
 
-    public java.sql.Connection con;
+    public Connection con;
 
-    public Database() {
-
+    public Connection getConnection() {
+        
         try {
             Class.forName(CLASSNAME);
             con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
@@ -33,7 +34,23 @@ public class Database {
         catch (SQLException e) {
             System.out.println(e);
         }
-
+        return con;
+    }
+    
+    public void RgisterUserFunction() throws SQLException
+    {
+        Connection co = getConnection(); 
+        String sql = "INSERT INTO CategoryTable VALUES(?,?,?)";
+         PreparedStatement sts = co.prepareStatement(sql);
+         int id = 2; 
+         String cat = "sports"; 
+         String note = "testing"; 
+         
+         sts.setInt(1, id);
+         sts.setString(2, cat);
+         sts.setString(3, note);
+         
+         sts.executeUpdate(); 
     }
 
    
