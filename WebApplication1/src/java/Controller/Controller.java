@@ -40,7 +40,14 @@ public class Controller extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         String username = request.getParameter("regusername");
-        String
+        String password = request.getParameter("regpassword"); 
+        String password2 = request.getParameter("regcnfmpassword");
+        String firstname = request.getParameter("regfirstname");
+        String lastname = request.getParameter("reglastname");
+        String email = request.getParameter("regemail");
+        String age = request.getParameter("regage");
+        String gender = request.getParameter("reggender"); 
+            
         Database connect = new Database(); 
         connect.RgisterUserFunction();
         //Statement st = connect.con.createStatement(); 
