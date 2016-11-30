@@ -74,7 +74,7 @@
 <!--FORM --> 
 <form action="userinfo" method="POST">
     <div class="form-group row">
-        <label for="example-text-input" class="col-xs-2 col-form-label">Username:</label>
+        <label for="example-text-input" class="col-xs-2 col-form-label">Usersfasdfaname:</label>
         <div class="col-xs-10">
           <input class="form-control" type="text" name="editusername" id="username" readonly>
         </div>
