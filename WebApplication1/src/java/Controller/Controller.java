@@ -47,9 +47,9 @@ public class Controller extends HttpServlet {
         String email = request.getParameter("regemail");
         String age = request.getParameter("regage");
         String gender = request.getParameter("reggender"); 
-            
-        Database connect = new Database(); 
-        connect.RgisterUserFunction();
+        Register register = new Register(username,password,password2,firstname,lastname,email,age,gender); 
+        register.insertRegister();
+        
         //Statement st = connect.con.createStatement(); 
         /**
           String sql = "INSERT INTO CategoryTable VALUES(?,?,?)";
