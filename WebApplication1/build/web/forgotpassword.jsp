@@ -75,7 +75,7 @@
       </div>
         
 <!--FORM --> 
-<form action="login" method="POST">
+<form action="controller" method="POST">
     
     <div class="form-group row">
         <label for="example-text-input" class="col-xs-2 col-form-label">Email:</label>
@@ -84,7 +84,7 @@
         </div>
       </div>
     
-    <button type="submit" class="btn btn-primary btn-lg btn-group-vertical">Send Password</button>
+    <input type="submit" class="btn btn-primary btn-lg btn-group-vertical" value="Send Password" name="action"/>
     
 </form> 
     <!--/.FORM -->   

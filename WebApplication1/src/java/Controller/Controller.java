@@ -27,96 +27,78 @@ import javax.servlet.http.HttpServletResponse;
 public class Controller extends HttpServlet {
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
+     * Handle an HTTP POST transaction for a drop or add.
      *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @param request The HTTP request object
+     * @param response The HTTP response object
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        String username = request.getParameter("regusername");
-        String password = request.getParameter("regpassword"); 
-        String password2 = request.getParameter("regcnfmpassword");
-        String firstname = request.getParameter("regfirstname");
-        String lastname = request.getParameter("reglastname");
-        String email = request.getParameter("regemail");
-        String age = request.getParameter("regage");
-        String gender = request.getParameter("reggender"); 
-        Register register = new Register(username,password,password2,firstname,lastname,email,age,gender); 
-        register.insertRegister();
-        
-        //Statement st = connect.con.createStatement(); 
-        /**
-          String sql = "INSERT INTO CategoryTable VALUES(?,?,?)";
-         PreparedStatement sts = connect.con.prepareStatement(sql);
-         int id = 1; 
-         String cat = "sports"; 
-         String note = "testing"; 
-         
-          sts.setInt(1, id);
-         sts.setString(2, cat);
-         sts.setString(3, note);
-         
-         sts.executeUpdate(); 
-         **/
-  
-  //      try {
-            /* TODO output your page here. You may use following sample code. */
-         /*
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Controller</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Controller at " + username+ "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {
-            out.close();
-        }*/
-         
-         //ts.close();
-        // connect.con.close();
-    }
+    public void service(HttpServletRequest request,
+            HttpServletResponse response) throws IOException,
+            ServletException {
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-    
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-    */
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        String action = request.getParameter("action");
+
+        String nextView = "/";
+
+        if (action == null) {
+
+        } else {
+            if (action.equals("Register")) {
+                nextView = "/index.jsp";
+                String username = request.getParameter("regusername");
+                String password = request.getParameter("regpassword");
+                String password2 = request.getParameter("regcnfmpassword");
+                String firstname = request.getParameter("regfirstname");
+                String lastname = request.getParameter("reglastname");
+                String email = request.getParameter("regemail");
+                String age = request.getParameter("regage");
+                String gender = request.getParameter("reggender");
+                Register register = new Register(username, password, password2, firstname, lastname, email, age, gender);
+                try {
+                    register.insertRegister();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else if (action.equals("Login")) {
+                nextView = "/index.jsp";
+            } else if (action.equals("Send Password")) {
+                nextView = "/index.jsp";
+            }
+            else {
+                nextView = "/login.jsp";
+            }
+            // forward to w/e View component
+            forwardTo(nextView, request, response);
         }
+
     }
 
+    /**
+     * Clean input by removing quotes, and optionally blanks.
+     *
+     * @param input The input to be cleaned
+     * @param removeBlanks If true, all blanks are removed from the input
+     * @return A cleaned version of the input
+     */
+    private String filter(String input, boolean removeBlanks) {
+        if (input != null) {
+            input = input.replace("'", "").replace("\"", "");
+            if (removeBlanks) {
+                input = input.replace(" ", "");
+            }
+        }
+        return input;
+    }
 
+    /**
+     * Forward a request to another component.
+     *
+     * @param url The url of the component to forward to
+     * @param request The HttpRequest object
+     * @param response The HttpResponse object
+     */
+    private void forwardTo(String url, HttpServletRequest request,
+            HttpServletResponse response) throws IOException, ServletException {
+        getServletContext().getRequestDispatcher(url).forward(request, response);
+    }
 }

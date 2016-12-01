@@ -64,7 +64,7 @@
         <br/><br/>
         
 <!--FORM --> 
-<form action="login" method="POST">
+<form action="controller" method="POST">
     <div class="form-group row">
         <label for="example-text-input" class="col-xs-2 col-form-label">Username:</label>
         <div class="col-xs-6">
@@ -79,7 +79,7 @@
         </div>
       </div>
     
-    <button type="submit" class="btn btn-primary btn-lg btn-group-vertical">Login</button>
+    <input type="submit" class="btn btn-primary btn-lg btn-group-vertical" name="action" value="Login"/>
     <p style="padding-top: 15px;"><a href="forgotpassword.jsp" style="color: black;">Forgot Password?</a></p>
     
 </form> 

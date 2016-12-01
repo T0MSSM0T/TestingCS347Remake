@@ -169,7 +169,7 @@
         
     </fieldset>
    </div><!--jumbotron-->
-    <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
+    <input type="submit" class="btn btn-primary btn-lg btn-block" name="action" value="Register"/>
        
     </form> 
     <!--/.FORM -->   
