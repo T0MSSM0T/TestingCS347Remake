@@ -49,16 +49,16 @@
                        <a href="userhome.jsp"><img src="logo.png" alt="" style="width:90px; height:50px"></a>
                     </li>
                     <li>
-                        <a href="userhome.jsp">Home</a>
+                        <a href="userhome.jsp" style="background-color: #00B8E6;">Home</a>
                     </li>
                     <li>
-                         <a href="userinfo.jsp">Profile</a>
+                         <a href="userinfo.jsp" style="background-color: #00B8E6;">Profile</a>
                     </li>
                     <li>
-                           <a href="#" style="background-color: #00B8E6;">Shuffle</a>
+                           <a href="shuffle.jsp" style="background-color: #00B8E6;">Shuffle</a>
                     </li>
                      <li>
-                           <a href="favorites.jsp">Favorites</a>
+                           <a href="favorites.jsp" style="background-color: #00B8E6;">Favorites</a>
                     </li>
                 </ul>
             </div>
@@ -74,7 +74,7 @@
 <!--FORM --> 
 <form action="userinfo" method="POST">
     <div class="form-group row">
-        <label for="example-text-input" class="col-xs-2 col-form-label">Usersfasdfaname:</label>
+        <label for="example-text-input" class="col-xs-2 col-form-label">Username:</label>
         <div class="col-xs-10">
           <input class="form-control" type="text" name="editusername" id="username" readonly>
         </div>
