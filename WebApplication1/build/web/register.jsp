@@ -148,6 +148,9 @@
                 <h2>Select Categories of Interest</h2>
                 <div style="background-color:#E5E4E2 !important;" class="jumbotron">
                     <fieldset>
+                        <%
+                            
+                        %>
                         <div class="custom-control-input">
                             <input id="movies" name="checkmovies" type="checkbox" >
                             <label>

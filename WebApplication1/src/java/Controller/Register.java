@@ -5,7 +5,7 @@
  */
 package Controller;
 
-import database.Database;
+import Database.Database;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
