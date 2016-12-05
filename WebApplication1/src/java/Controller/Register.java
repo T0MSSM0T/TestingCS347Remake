@@ -5,7 +5,7 @@
  */
 package Controller;
 
-import Database.Database;
+import database.Database;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class Register extends Database{
     
-    static int ID = 89;
+    static int ID = 100;
     static int LINK = 2;
     static String ADMIN = "Admin"; 
 

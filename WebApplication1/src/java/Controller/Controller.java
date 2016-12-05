@@ -68,9 +68,20 @@ public class Controller extends HttpServlet {
                 String password = request.getParameter("loginpassword");
                 Authentication authentication = new Authentication(userid,password); 
                 try {
-                    if(authentication.authenticate()) 
-                       System.out.println("Succes");
-                    else System.out.println("fail"); 
+                    if(authentication.authenticate()){
+                         System.out.println("Succes");
+                         nextView = "/userinfo.jsp"; 
+                         Credentials credential = authentication.getCredentials(); 
+                         request.setAttribute("username",credential.getUsername());
+                         request.setAttribute("firstname",credential.getFirstname()); 
+                         request.setAttribute("lastname", credential.getLastname());
+                         request.setAttribute("age", credential.getAge());
+                         request.setAttribute("email", credential.getEmail()); 
+                         request.setAttribute("gender", credential.getGender());
+                         
+                    } 
+                   
+                    else System.out.println("fail"); //Handle here if login fails
                 } catch (SQLException ex) {
                     Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
                 }
