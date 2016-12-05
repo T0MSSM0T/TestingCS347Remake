@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package database;
+package Database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -23,35 +23,31 @@ public class Database {
     public Connection con;
 
     public Connection getConnection() {
-        
+
         try {
             Class.forName(CLASSNAME);
             con = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-        } 
-        catch (ClassNotFoundException e) {
-           System.out.println(e);
-        } 
-        catch (SQLException e) {
+        } catch (ClassNotFoundException e) {
+            System.out.println(e);
+        } catch (SQLException e) {
             System.out.println(e);
         }
         return con;
     }
-    
-    public void RgisterUserFunction() throws SQLException
-    {
-        Connection co = getConnection(); 
+
+    public void RgisterUserFunction() throws SQLException {
+        Connection co = getConnection();
         String sql = "INSERT INTO CategoryTable VALUES(?,?,?)";
-         PreparedStatement sts = co.prepareStatement(sql);
-         int id = 2; 
-         String cat = "sports"; 
-         String note = "testing"; 
-         
-         sts.setInt(1, id);
-         sts.setString(2, cat);
-         sts.setString(3, note);
-         
-         sts.executeUpdate(); 
+        PreparedStatement sts = co.prepareStatement(sql);
+        int id = 2;
+        String cat = "sports";
+        String note = "testing";
+
+        sts.setInt(1, id);
+        sts.setString(2, cat);
+        sts.setString(3, note);
+
+        sts.executeUpdate();
     }
 
-   
 }

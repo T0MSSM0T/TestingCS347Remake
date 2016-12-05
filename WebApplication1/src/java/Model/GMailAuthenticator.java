@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package Model;
 
 import javax.mail.Authenticator;
 import javax.mail.PasswordAuthentication;
@@ -12,17 +12,18 @@ import javax.mail.PasswordAuthentication;
  *
  * @author hirstrb
  */
-class GMailAuthenticator extends Authenticator {
-     String user;
-     String pw;
-     public GMailAuthenticator (String username, String password)
-     {
+public class GMailAuthenticator extends Authenticator {
+
+    String user;
+    String pw;
+
+    public GMailAuthenticator(String username, String password) {
         super();
         this.user = username;
         this.pw = password;
-     }
-    public PasswordAuthentication getPasswordAuthentication()
-    {
-       return new PasswordAuthentication(user, pw);
+    }
+
+    public PasswordAuthentication getPasswordAuthentication() {
+        return new PasswordAuthentication(user, pw);
     }
 }

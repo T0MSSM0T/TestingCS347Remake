@@ -5,6 +5,10 @@
  */
 package Controller;
 
+import Model.User;
+import Model.GMailAuthenticator;
+import Model.Credentials;
+import Model.Authentication;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -46,55 +50,10 @@ public class Controller extends HttpServlet {
         } // register 
         else {
             if (action.equals("Register")) {
-                nextView = "/index.jsp";
-                String username = request.getParameter("regusername");
-                String password = request.getParameter("regpassword");
-                String password2 = request.getParameter("regcnfmpassword");
-                String firstname = request.getParameter("regfirstname");
-                String lastname = request.getParameter("reglastname");
-                String email = request.getParameter("regemail");
-                String age = request.getParameter("regage");
-                String gender = request.getParameter("reggender");
-                Register register = new Register(username, password, password2, firstname, lastname, email, age, gender);
-                try {
-                    register.insertRegister();
-                } catch (SQLException ex) {
-                    Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-                }
+
             } // login 
             else if (action.equals("Login")) {
 
-                String userid = request.getParameter("loginusername");
-                String password = request.getParameter("loginpassword");
-                Authentication authentication = new Authentication(userid,password); 
-                try {
-                    if(authentication.authenticate()){
-                         System.out.println("Succes");
-                         nextView = "/userinfo.jsp"; 
-                         Credentials credential = authentication.getCredentials(); 
-                         request.setAttribute("username",credential.getUsername());
-                         request.setAttribute("firstname",credential.getFirstname()); 
-                         request.setAttribute("lastname", credential.getLastname());
-                         request.setAttribute("age", credential.getAge());
-                         request.setAttribute("email", credential.getEmail()); 
-                         request.setAttribute("gender", credential.getGender());
-                         
-                    } 
-                   
-                    else System.out.println("fail"); //Handle here if login fails
-                } catch (SQLException ex) {
-                    Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                /**
-                if (userid.equals("admin") && password.equals("admin")) {
-                    HttpSession session = request.getSession(true);
-                    session.setAttribute("loggedIn", true);
-                    session.setAttribute("userid", userid);
-                    nextView = "/userinfo.jsp";
-                } else {
-                    nextView = "/login.jsp";
-                }
-                **/ 
             } // forgot password 
             else if (action.equals("Send Password")) {
                 String to = "hirstrb@dukes.jmu.edu";
@@ -129,37 +88,8 @@ public class Controller extends HttpServlet {
                 nextView = "/login.jsp";
             }
             // forward to w/e View component
-            forwardTo(nextView, request, response);
+
         }
 
-    }
-
-    /**
-     * Clean input by removing quotes, and optionally blanks.
-     *
-     * @param input The input to be cleaned
-     * @param removeBlanks If true, all blanks are removed from the input
-     * @return A cleaned version of the input
-     */
-    private String filter(String input, boolean removeBlanks) {
-        if (input != null) {
-            input = input.replace("'", "").replace("\"", "");
-            if (removeBlanks) {
-                input = input.replace(" ", "");
-            }
-        }
-        return input;
-    }
-
-    /**
-     * Forward a request to another component.
-     *
-     * @param url The url of the component to forward to
-     * @param request The HttpRequest object
-     * @param response The HttpResponse object
-     */
-    private void forwardTo(String url, HttpServletRequest request,
-            HttpServletResponse response) throws IOException, ServletException {
-        getServletContext().getRequestDispatcher(url).forward(request, response);
     }
 }

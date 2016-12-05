@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package Model;
 
 /**
  *
@@ -11,13 +11,12 @@ package Controller;
  */
 public class Credentials {
 
-
-    private String username; 
-    private String firstname; 
+    private String username;
+    private String firstname;
     private String lastname;
-    private int age; 
-    private String email; 
-    private String gender; 
+    private int age;
+    private String email;
+    private String gender;
 
     public Credentials(String username, String firstname, String lastname, int age, String email, String gender) {
         this.username = username;
@@ -29,7 +28,7 @@ public class Credentials {
     }
 
     public Credentials() {
-        
+
     }
 
     /**
@@ -115,6 +114,5 @@ public class Credentials {
     public void setGender(String gender) {
         this.gender = gender;
     }
-    
-    
+
 }

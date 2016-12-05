@@ -5,7 +5,7 @@
  */
 package Model;
 
-import database.Database;
+import Database.Database;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,16 +16,17 @@ import java.util.ArrayList;
  *
  * @author schieftg
  */
-public class CategoryList extends Database{
+public class CategoryList extends Database {
+
     public ArrayList<String> getCategories() throws SQLException {
         ArrayList<String> categories = new ArrayList<String>();
-        Connection conection = getConnection(); 
+        Connection conection = getConnection();
         String query = "SELECT CategoryName FROM CategoryTable";
         Statement st = conection.createStatement();
-        ResultSet result = st.executeQuery(query); 
-        while(result.next()){
+        ResultSet result = st.executeQuery(query);
+        while (result.next()) {
             categories.add(result.getString("CategoryName"));
         }
-        return  categories;
+        return categories;
     }
 }

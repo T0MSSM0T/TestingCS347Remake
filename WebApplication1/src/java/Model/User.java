@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package Model;
 
-import database.Database;
+import Database.Database;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -15,58 +15,58 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author perezcx
  */
-public class Register extends Database{
-    
-    static int ID = 100;
-    static int LINK = 2;
-    static String ADMIN = "Admin"; 
+public class User extends Database {
 
-    private String username; 
-    private String password; 
-    private String password2; 
-    private String firstname; 
+    static int ID = 1;
+    static int LINK = 2;
+    static String ADMIN = "Admin";
+
+    private String username;
+    private String password;
+    private String password2;
+    private String firstname;
     private String lastname;
-    private int age; 
-    private String email; 
-    private String gender; 
-    
-    public Register(String username, String password, String password2, String firstname, String lastname, String email, String age, String gender) {
-        this.username = username; 
-        this.password = password; 
-        this.password2 = password2; 
-        this.firstname = firstname; 
-        this.lastname = lastname; 
-        this.age = parseInt(age); 
-        this.email = email; 
-        this.gender = gender; 
+    private int age;
+    private String email;
+    private String gender;
+
+    public User(String username, String password, String password2, String firstname, String lastname, String email, String age, String gender) {
+        this.username = username;
+        this.password = password;
+        this.password2 = password2;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.age = parseInt(age);
+        this.email = email;
+        this.gender = gender;
     }
-    
-    public void insertRegister() throws SQLException{
-        Connection co = getConnection(); 
+
+    public void insertRegister() throws SQLException {
+        Connection co = getConnection();
         String sql = "INSERT INTO UserTable VALUES(?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement sts = co.prepareStatement(sql);
-         sts.setInt(1, ID);
-         sts.setInt(2,LINK);
-         sts.setString(3, username);
-         sts.setString(4, password);
-         sts.setString(5, email);
-         sts.setString(6, firstname);
-         sts.setString(7, lastname);
-         sts.setInt(8, age);
-         sts.setString(9, gender);
-         sts.setString(10,ADMIN);
-         
-         sts.executeUpdate(); 
+        sts.setInt(1, ID);//Quesry database to get last id + 1
+        sts.setInt(2, LINK);
+        sts.setString(3, username);
+        sts.setString(4, password);
+        sts.setString(5, email);
+        sts.setString(6, firstname);
+        sts.setString(7, lastname);
+        sts.setInt(8, age);
+        sts.setString(9, gender);
+        sts.setString(10, ADMIN);
+        ID++;
+        sts.executeUpdate();
     }
-    
-     private int parseInt(String name) {
+
+    private int parseInt(String name) {
         try {
             return Integer.parseInt(name);
         } catch (NumberFormatException exc) {
             //Quick-fix to make the query have a default year.
-            System.out.println("unable to parse"); 
+            System.out.println("unable to parse");
         }
-        return 0; 
+        return 0;
     }
-    
+
 }
