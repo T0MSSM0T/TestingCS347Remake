@@ -83,7 +83,7 @@
             </script>
 
             <!--FORM -->
-            <form action="controller" method="POST" onsubmit="return validatePassword()">
+            <form action="controller" method="POST"  onsubmit="return validatePassword()">
                 <div class="form-group row">
                     <label for="example-text-input" class="col-xs-2 col-form-label">Username:</label>
                     <div class="col-xs-10">

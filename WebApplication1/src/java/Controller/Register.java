@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class Register extends Database{
     
-    static int ID = 1;
+    static int ID = 89;
     static int LINK = 2;
     static String ADMIN = "Admin"; 
 

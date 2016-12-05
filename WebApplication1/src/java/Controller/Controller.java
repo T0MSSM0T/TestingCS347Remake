@@ -6,6 +6,7 @@
 package Controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -35,7 +36,7 @@ public class Controller extends HttpServlet {
     public void service(HttpServletRequest request,
             HttpServletResponse response) throws IOException,
             ServletException {
-
+        PrintWriter out = response.getWriter();
         String action = request.getParameter("action");
 
         String nextView = "/";
@@ -65,7 +66,15 @@ public class Controller extends HttpServlet {
 
                 String userid = request.getParameter("loginusername");
                 String password = request.getParameter("loginpassword");
-
+                Authentication authentication = new Authentication(userid,password); 
+                try {
+                    if(authentication.authenticate()) 
+                       System.out.println("Succes");
+                    else System.out.println("fail"); 
+                } catch (SQLException ex) {
+                    Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                /**
                 if (userid.equals("admin") && password.equals("admin")) {
                     HttpSession session = request.getSession(true);
                     session.setAttribute("loggedIn", true);
@@ -74,6 +83,7 @@ public class Controller extends HttpServlet {
                 } else {
                     nextView = "/login.jsp";
                 }
+                **/ 
             } // forgot password 
             else if (action.equals("Send Password")) {
                 String to = "hirstrb@dukes.jmu.edu";
