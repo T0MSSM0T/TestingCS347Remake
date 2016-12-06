@@ -2,10 +2,14 @@ package Model;
 
 import Model.Credentials;
 import Database.Database;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Formatter;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -33,13 +37,13 @@ public class Authentication extends Database {
         String query = "SELECT * FROM UserTable ";
         Statement st = conection.createStatement();
         result = st.executeQuery(query);
-
+        String hash = encodePassword(password); 
+        
         while (result.next()) {
-            if (username.equals(result.getString("Username")) && password.equals(result.getString("Password"))) {
+            if (username.equals(result.getString("Username")) && hash.equals(result.getString("Password"))) {
                 pk = result.getInt("UserID");
                 return true;
             }
-
         }
 
         return false;
@@ -51,8 +55,8 @@ public class Authentication extends Database {
          * Connection conection = getConnection(); Statement st =
          * conection.createStatement(); ResultSet result; String query = "SELECT
          * * FROM UserTable WHERE UserID = "+pk; result =
-         * st.executeQuery(query); 
-        *
+         * st.executeQuery(query);
+         *
          */
         Credentials credential = new Credentials();
 
@@ -64,7 +68,21 @@ public class Authentication extends Database {
         credential.setGender(result.getString("Gender"));
 
         return credential;
-
     }
 
+    private static String encodePassword(String password) {
+        try {
+            byte[] bytes = password.getBytes("UTF-8");
+            bytes = MessageDigest.getInstance("MD5").digest(bytes);
+            Formatter f = new Formatter();
+            for (byte b : bytes) {
+                f.format("%02x", b);
+            }
+            return f.toString();
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
