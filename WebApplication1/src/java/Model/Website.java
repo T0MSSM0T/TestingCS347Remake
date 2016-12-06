@@ -7,7 +7,6 @@ package Model;
 
 import Database.Database;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -28,6 +27,23 @@ public class Website extends Database {
     int adCount;
     String notes;
     int rating;
+    String IFrame;
+
+    public Website() {
+
+    }
+
+    public Website(int siteID, int categoryIDLink, String siteTitle,
+            String hyperLink, int adCount, String notes, int rating, String IFrame) {
+        this.siteID = siteID;
+        this.categoryIDLink = categoryIDLink;
+        this.siteTitle = siteTitle;
+        this.hyperLink = hyperLink;
+        this.adCount = adCount;
+        this.notes = notes;
+        this.rating = rating;
+        this.IFrame = IFrame;
+    }
 
     public int getSiteID() {
         return siteID;
@@ -84,22 +100,57 @@ public class Website extends Database {
     public void setRating(int rating) {
         this.rating = rating;
     }
-    
-    public ArrayList<String> getWebsites() {
-        ArrayList<String> websites = new ArrayList<String>();
-        
+
+    public String getIFrame() {
+        return IFrame;
+    }
+
+    public void setIFrame(String IFrame) {
+        this.IFrame = IFrame;
+    }
+
+    public ArrayList<String> getHyperlinks() {
+        ArrayList<String> hyperlinks = new ArrayList<String>();
         Connection co = getConnection();
-        String sql = "SELECT Hyperlink FROM SitesTable"; 
-        try { 
+        String sql = "SELECT Hyperlink FROM SitesTable";
+        try {
             Statement st = co.createStatement();
             ResultSet rs = st.executeQuery(sql);
-            while(rs.next()) {
-                websites.add(rs.getString("Hyperlink"));
+            while (rs.next()) {
+                hyperlinks.add(rs.getString("Hyperlink"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Website.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        return websites; 
+
+        return hyperlinks;
+    }
+
+    public ArrayList<Website> getWebsites() {
+        ArrayList<Website> websites = new ArrayList<Website>();
+        Connection co = getConnection();
+        String sql = "SELECT * FROM SitesTable";
+
+        try {
+            Statement st = co.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                int sID = rs.getInt(1);
+                int cLink = rs.getInt(2);
+                String sTitle = rs.getString(3);
+                String hLink = rs.getString(4);
+                int aCount = rs.getInt(5);
+                String note = rs.getString(6);
+                int rate = rs.getInt(7);
+                String frame = rs.getString(8);
+
+                Website site = new Website(sID, cLink, sTitle, hLink, aCount, note, rate, frame);
+                websites.add(site);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Website.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return websites;
     }
 }

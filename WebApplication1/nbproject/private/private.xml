@@ -3,16 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/schieftg/TestingCS347Remake/WebApplication1/src/java/Controller/LoginServlet.java</file>
-            <file>file:/Users/schieftg/TestingCS347Remake/WebApplication1/src/java/Model/Credentials.java</file>
-            <file>file:/Users/schieftg/TestingCS347Remake/WebApplication1/src/java/Model/User.java</file>
-            <file>file:/Users/schieftg/TestingCS347Remake/WebApplication1/src/java/Database/Database.java</file>
-            <file>file:/Users/schieftg/TestingCS347Remake/WebApplication1/src/java/Controller/Forwarder.java</file>
-            <file>file:/Users/schieftg/TestingCS347Remake/WebApplication1/src/java/Model/CategoryList.java</file>
-            <file>file:/Users/schieftg/TestingCS347Remake/WebApplication1/src/java/Model/Authentication.java</file>
-            <file>file:/Users/schieftg/TestingCS347Remake/WebApplication1/src/java/Model/GMailAuthenticator.java</file>
-            <file>file:/Users/schieftg/TestingCS347Remake/WebApplication1/src/java/Controller/RegisterServlet.java</file>
-            <file>file:/Users/schieftg/TestingCS347Remake/WebApplication1/src/java/Controller/Controller.java</file>
+            <file>file:/Users/hirstrb/NetBeansProjects/TestingCS347Remake/WebApplication1/src/java/Model/Website.java</file>
+            <file>file:/Users/hirstrb/NetBeansProjects/TestingCS347Remake/WebApplication1/web/index.jsp</file>
+            <file>file:/Users/hirstrb/NetBeansProjects/TestingCS347Remake/WebApplication1/web/websiteinfo.jsp</file>
+            <file>file:/Users/hirstrb/NetBeansProjects/TestingCS347Remake/WebApplication1/src/java/encrypt.java</file>
+            <file>file:/Users/hirstrb/NetBeansProjects/TestingCS347Remake/WebApplication1/web/login.jsp</file>
         </group>
     </open-files>
 </project-private>

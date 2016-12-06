@@ -4,12 +4,13 @@
     Author     : hirstrb
 --%>
 
+<%@page import="Model.Website"%>
 <%@page import="java.util.Random"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean class="Model.Website" id="websiteList" scope="session" />
 <!DOCTYPE html>
 <html>
-    <jsp:useBean class="Model.Website" id="websiteList" scope="session" />
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,14 +26,20 @@
             <jsp:include page="menubar.jsp"/>
         </div>
         
+
         <div>
             <%
-                ArrayList<String> websites = websiteList.getWebsites();
                 Random rand = new Random();
-                Integer randomInt = rand.nextInt(websites.size());
-                String chosen = websites.get(randomInt);
+                ArrayList<Website> sites = websiteList.getWebsites();
+                Integer randomInt = rand.nextInt(sites.size());
+                Website chosen = sites.get(randomInt);
+                out.print("<iframe height=\"600\" width=\"600\" align=\"middle\" src=\"https://" + chosen.getIFrame() + "\">" + "</iframe>");
                 out.print("<p>"+"Random Int is: "+ randomInt + "</p>");
-                out.print("<a href=\"http://"+ chosen + "\">" + chosen + "</a>");
+                out.print("<p>"+"Website: "+ chosen.getSiteTitle() + "</p>");
+                out.print("<p>"+"Ad Count: "+ chosen.getAdCount() + "</p>");
+                out.print("<p>"+"Rating "+ chosen.getRating() + "</p>");                
+                out.print("<p>"+"Category: "+ chosen.getCategoryIDLink() + "</p>");
+                out.print("<p><a href=\"http://"+ chosen.getHyperLink() + "\">" + chosen.getSiteTitle() + "</a></p>");
             %>
         </div>
     </body>
