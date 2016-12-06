@@ -20,45 +20,12 @@
 
         <!-- Custom CSS -->
         <link href="css/small-business.css" rel="stylesheet">
-
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-         <![endif]-->
-
     </head>
 
     <body>
-
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"  >
-                    <ul class="nav nav-justified" >
-                        <li>
-                            <a href="index.jsp"><img src="logo.png" alt="" style="width:90px; height:50px"></a>
-                        </li>
-                        <li>
-                            <a href="index.jsp">Back</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container -->
-        </nav>
+        <div>
+            <jsp:include page="navigationbar.jsp"/>
+        </div>
 
         <!-- Page Content -->
         <div class="container">
