@@ -5,10 +5,12 @@
  */
 package Controller;
 
+import Model.CategoryList;
 import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -49,7 +51,23 @@ public class RegisterServlet extends Forwarder {
         String email = request.getParameter("regemail");
         String age = request.getParameter("regage");
         String gender = request.getParameter("reggender");
-        User register = new User(username, password, password2, firstname, lastname, email, age, gender);
+        CategoryList category = new CategoryList();
+        ArrayList<String> list;
+        ArrayList<Integer> fav = new ArrayList<Integer>();
+        try {
+            list = category.getCategories();
+            for (int i = 0; i < list.size(); i++) {
+                if (request.getParameter("check" + list.get(i)) == null || request.getParameter("check" + list.get(i)).equals("false")) {
+                    fav.add(0);
+                }
+                else
+                    fav.add(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        User register = new User(username, password, password2, firstname, lastname, email, age, gender, fav);
         try {
             register.insertRegister();
         } catch (SQLException ex) {
