@@ -19,8 +19,6 @@ import java.util.ArrayList;
  */
 public class User extends Database {
 
-    static int ID = 2;
-    static int LINK = 2;
     static String ROLE = "User";
 
     private String username;
@@ -47,22 +45,6 @@ public class User extends Database {
         this.email = email;
         this.gender = gender;
         this.favsC = favs;
-    }
-
-    public static int getID() {
-        return ID;
-    }
-
-    public static void setID(int ID) {
-        User.ID = ID;
-    }
-
-    public static int getLINK() {
-        return LINK;
-    }
-
-    public static void setLINK(int LINK) {
-        User.LINK = LINK;
     }
 
     public static String getRole() {
@@ -139,8 +121,15 @@ public class User extends Database {
 
     public void insertRegister() throws SQLException {
         Connection co = getConnection();
+        
+        String countQ = "SELECT COUNT(*) FROM UserTable";
+        Statement q = co.createStatement();
+        ResultSet res = q.executeQuery(countQ);
+        res.next();
+        int rows = res.getInt("COUNT(*)") + 1;
+        
         String sql1 = "INSERT INTO UserTable VALUES(?,?,?,?,?,?,?,?,?,?)";
-        String sql2 = "INSERT INTO UsersFavoriteTable VALUES(" + LINK + ",";
+        String sql2 = "INSERT INTO UsersFavoriteTable VALUES(" + rows + ",";
         for (int i = 0; i < favsC.size(); i++)
         {
             sql2 += favsC.get(i) + ",";
@@ -151,8 +140,8 @@ public class User extends Database {
         Statement sts2 = co.createStatement();
         sts2.executeUpdate(sql2);
         PreparedStatement sts1 = co.prepareStatement(sql1);
-        sts1.setInt(1, ID);//Quesry database to get last id + 1
-        sts1.setInt(2, LINK);
+        sts1.setInt(1, rows);//Quesry database to get last id + 1
+        sts1.setInt(2, rows);
         sts1.setString(3, username);
         sts1.setString(4, password);
         sts1.setString(5, email);
@@ -161,8 +150,6 @@ public class User extends Database {
         sts1.setInt(8, age);
         sts1.setString(9, gender);
         sts1.setString(10, ROLE);
-        ID++;
-        LINK++;
         sts1.executeUpdate();
     }
 
