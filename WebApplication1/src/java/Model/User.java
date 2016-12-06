@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class User extends Database {
 
     static int ID = 2;
-    static int LINK = 1;
+    static int LINK = 2;
     static String ROLE = "User";
 
     private String username;

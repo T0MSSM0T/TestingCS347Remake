@@ -5,6 +5,10 @@
  */
 package Controller;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Formatter;
 import Model.CategoryList;
 import Model.User;
 import java.io.IOException;
@@ -45,7 +49,7 @@ public class RegisterServlet extends Forwarder {
         nextView = "/index.jsp";
         String username = request.getParameter("regusername");
         String password = request.getParameter("regpassword");
-        String password2 = request.getParameter("regcnfmpassword");
+        String password2 = request.getParameter("regcnfpassword");
         String firstname = request.getParameter("regfirstname");
         String lastname = request.getParameter("reglastname");
         String email = request.getParameter("regemail");
@@ -59,20 +63,37 @@ public class RegisterServlet extends Forwarder {
             for (int i = 0; i < list.size(); i++) {
                 if (request.getParameter("check" + list.get(i)) == null || request.getParameter("check" + list.get(i)).equals("false")) {
                     fav.add(0);
-                }
-                else
+                } else {
                     fav.add(1);
+                }
             }
         } catch (SQLException ex) {
             Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        User register = new User(username, password, password2, firstname, lastname, email, age, gender, fav);
+        String hash = encodePassword(password);
+        User register = new User(username, hash, hash, firstname, lastname, email, age, gender, fav);
         try {
             register.insertRegister();
         } catch (SQLException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
         forwardTo(nextView, request, response);
+    }
+
+    private static String encodePassword(String password) {
+        try {
+            byte[] bytes = password.getBytes("UTF-8");
+            bytes = MessageDigest.getInstance("MD5").digest(bytes);
+            Formatter f = new Formatter();
+            for (byte b : bytes) {
+                f.format("%02x", b);
+            }
+            return f.toString();
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
