@@ -1,3 +1,6 @@
+
+<%@page import="java.util.ArrayList"%>
+<jsp:useBean class="Model.CategoryList" id="CL" scope="application" />
 <!DOCTYPE html>
 <html lang="en">
 
@@ -116,50 +119,14 @@
                 <div style="background-color:#E5E4E2 !important;" class="jumbotron">
                     <fieldset>
                         <%
-
+                            ArrayList<String> list = CL.getCategories();
+                            for (int i = 0; i < list.size(); i++)
+                            {
+                                out.print("<div class=\"custom-control-input\">");
+                                out.print("<input id=\""+ list.get(i) +"\" name=\"check" + list.get(i) + "\" type=\"checkbox\" >");
+                                out.print("<label>" + list.get(i) + "</label></div>");
+                            }
                         %>
-                        <div class="custom-control-input">
-                            <input id="movies" name="checkmovies" type="checkbox" >
-                            <label>
-                                Movies
-                            </label>
-                        </div>
-
-                        <div class="custom-control-input">
-                            <input id="sports" name="checksports" type="checkbox" >
-                            <label>
-                                Sports
-                            </label>
-                        </div>
-
-                        <div class="custom-control-input">
-                            <input id="technology" name="checktech" type="checkbox" >
-                            <label for="technology">
-                                Technology
-                            </label>
-                        </div>
-
-                        <div class="custom-control-input">
-                            <input id="news" name="checknews" type="checkbox" >
-                            <label>
-                                News
-                            </label>
-                        </div>
-
-                        <div class="custom-control-input">
-                            <input id="innovative" name="checkinnovative" type="checkbox" >
-                            <label>
-                                Innovative
-                            </label>
-                        </div>
-
-                        <div class="custom-control-input">
-                            <input id="streaming" name="checkstreaming" type="checkbox" >
-                            <label>
-                                Streaming
-                            </label>
-                        </div>
-
                     </fieldset>
                 </div><!--jumbotron-->
                 <input type="submit" class="btn btn-primary btn-lg btn-block" name="action" value="Register"/>

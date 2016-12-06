@@ -18,6 +18,8 @@ import java.util.ArrayList;
  */
 public class CategoryList extends Database {
 
+    static boolean first = true;
+
     public ArrayList<String> getCategories() throws SQLException {
         ArrayList<String> categories = new ArrayList<String>();
         Connection conection = getConnection();
@@ -27,6 +29,17 @@ public class CategoryList extends Database {
         while (result.next()) {
             categories.add(result.getString("CategoryName"));
         }
+        //if (first) {
+          //  first = false;
+        
+        //query = "CREATE TABLE IF NOT EXISTS UsersFavoriteTable AS SELECT CategoryName FROM CategoryTable";
+        query = "CREATE TABLE IF NOT EXISTS UsersFavoriteTable(UsernameCategoryID INT PRIMARY KEY,";
+        for (int i = 0; i < categories.size() - 1; i++) {
+            query += categories.get(i) + " INT,";
+        }
+        query += categories.get(categories.size() - 1) + " INT)";
+        st.executeUpdate(query);
+        //}
         return categories;
     }
 }
