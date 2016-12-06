@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class User extends Database {
 
     static int ID = 2;
-    static int LINK = 2;
+    static int LINK = 1;
     static String ROLE = "User";
 
     private String username;
@@ -47,12 +47,14 @@ public class User extends Database {
     public void insertRegister() throws SQLException {
         Connection co = getConnection();
         String sql1 = "INSERT INTO UserTable VALUES(?,?,?,?,?,?,?,?,?,?)";
-        String sql2 = "INSERT INTO UsersFavoriteTable VALUES(";
-        for (int i = 0; i < favsC.size()-1; i++)
+        String sql2 = "INSERT INTO UsersFavoriteTable VALUES(" + LINK + ",";
+        for (int i = 0; i < favsC.size(); i++)
         {
             sql2 += favsC.get(i) + ",";
         }
-        sql2 += favsC.get(favsC.size()-1) + ")";
+        sql2 = sql2.substring(0, sql2.length()-1);
+        sql2 += ")";
+        //sql2 += favsC.get(favsC.size()-1) + ")";
         Statement sts2 = co.createStatement();
         sts2.executeUpdate(sql2);
         PreparedStatement sts1 = co.prepareStatement(sql1);
