@@ -6,7 +6,6 @@
 <html lang="en">
 
     <head>
-
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,15 +23,22 @@
         <ul>
             <%
                 ArrayList<String> categories = ctList.getCategories();
-                ArrayList<Website> websites = websiteList.getWebsites();
                 for (int ii = 0; ii < categories.size(); ii++) {
-                    out.println("<fielset class=\"toggleAble\"><legend> " + categories.get(ii) + "</legend>");
-                    
+                    out.println("<fielset><legend> " + categories.get(ii) + "</legend>");
+                    int pos = ii + 1;
+                    ArrayList<Website> websites = websiteList.getCategoryWebsites(pos);
+
                     for (int jj = 0; jj < websites.size(); jj++) {
-                        out.println("<div>");
-                        out.println("<p> Website: " + websites.get(jj).getSiteTitle() + "</p>");
+                        int posJJ = jj + 1;
+                        out.println("<div align=\"middle\">");
+                        out.println("<p>" + posJJ + ". </p>");
+                        out.println("<p> Site: " + websites.get(jj).getSiteTitle() + "</p>");
+                        out.println("<p> Link: <a href=\"https://" + websites.get(jj).getHyperLink() + "\">"
+                                + websites.get(jj).getSiteTitle() + "</a></p>");
+                        out.println("<p> Ads: " + websites.get(jj).getAdCount() + "</p>");
                         out.println("<p> Rating: " + websites.get(jj).getRating() + "</p>");
                     }
+                    
                     out.println("</div></fieldset>");
                 }
             %>

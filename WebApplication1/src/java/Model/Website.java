@@ -129,7 +129,7 @@ public class Website extends Database {
     public ArrayList<Website> getCategoryWebsites(int category) {
         ArrayList<Website> categoryWebsites = new ArrayList<Website>();
         Connection co = getConnection();
-        String sql = "SELECT * FROM SitesTables WHERE CategoryIDLink = " + category;
+        String sql = "SELECT * FROM SitesTable WHERE CategoryIDLink = " + category;
 
         try {
             Statement st = co.createStatement();
