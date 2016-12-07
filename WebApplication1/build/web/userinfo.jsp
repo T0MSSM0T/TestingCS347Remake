@@ -28,6 +28,7 @@
             document.getElementById("innovative").disabled = false;
             document.getElementById("streaming").disabled = false;
         }
+     
     </script>
     <body>
         <div>
@@ -42,42 +43,42 @@
                 <div class="form-group row">
                     <label for="example-text-input" class="col-xs-2 col-form-label">Username:</label>
                     <div class="col-xs-10">
-                        <input class="form-control" type="text" value="<%=request.getAttribute("username")%>" name="editusername" id="username" disabled="true" >
+                        <input class="form-control" type="text" value="<%=session.getAttribute("username")%>" name="editusername" id="username" disabled="true" >
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="example-search-input" class="col-xs-2 col-form-label">First Name:</label>
                     <div class="col-xs-10">
-                        <input class="form-control" type="text" value="<%=request.getAttribute("firstname")%>" name="editfirstname" id="firstname" disabled="true">
+                        <input class="form-control" type="text" value="<%=session.getAttribute("firstname")%>" name="editfirstname" id="firstname" disabled="true">
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="example-email-input" class="col-xs-2 col-form-label">Last Name:</label>
                     <div class="col-xs-10">
-                        <input class="form-control" type="text" value="<%=request.getAttribute("lastname")%>" name="editlastname" id="lastname" disabled="true">
+                        <input class="form-control" type="text" value="<%=session.getAttribute("lastname")%>" name="editlastname" id="lastname" disabled="true">
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="example-url-input" class="col-xs-2 col-form-label">Age:</label>
                     <div class="col-xs-10">
-                        <input class="form-control" type="text" value="<%=request.getAttribute("age")%>" name="editage" id="age" disabled="true">
+                        <input class="form-control" type="text" value="<%=session.getAttribute("age")%>" name="editage" id="age" disabled="true">
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="example-url-input" class="col-xs-2 col-form-label">Email:</label>
                     <div class="col-xs-10">
-                        <input class="form-control" type="text" value="<%=request.getAttribute("email")%>" name="editemail" id="email" disabled="true">
+                        <input class="form-control" type="text" value="<%=session.getAttribute("email")%>" name="editemail" id="email" disabled="true">
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="example-tel-input" class="col-xs-2 col-form-label">Gender:</label>
                     <div class="col-xs-10">
-                        <input class="form-control" type="text" value="<%=request.getAttribute("gender")%>" name="editgender" id="gender" disabled="true">
+                        <input class="form-control" type="text" value="<%=session.getAttribute("gender")%>" name="editgender" id="gender" disabled="true">
                     </div>
                 </div>
 
@@ -85,14 +86,14 @@
                 <div style="background-color:#E5E4E2 !important;" class="jumbotron">
                     <fieldset>
                         <div class="custom-control-input">
-                            <input id="movies" name="checkeditmovies" type="checkbox" disabled="true">
+                            <input id="movies" name="checkeditmovies"  type="checkbox" disabled="true">
                             <label>
                                 Movies
                             </label>
                         </div>
 
                         <div class="custom-control-input">
-                            <input id="sports" name="checkeditsports" type="checkbox" disabled="true">
+                            <input id="sports" name="checkeditsports" checked="" type="checkbox" disabled="true">
                             <label>
                                 Sports
                             </label>
@@ -106,7 +107,7 @@
                         </div>
 
                         <div class="custom-control-input">
-                            <input id="news" name="checkeditnews" type="checkbox" disabled="true">
+                            <input id="news" name="checkeditnews" checked="<%=session.getAttribute("news")%>"type="checkbox" disabled="true">
                             <label>
                                 News
                             </label>

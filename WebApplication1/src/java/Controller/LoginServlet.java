@@ -17,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -38,7 +39,7 @@ public class LoginServlet extends Forwarder {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        HttpSession session = request.getSession(); 
         String nextView = "/";
         String userid = request.getParameter("loginusername");
         String password = request.getParameter("loginpassword");
@@ -48,13 +49,17 @@ public class LoginServlet extends Forwarder {
                 System.out.println("Succes");
                 nextView = "/userinfo.jsp";
                 Credentials credential = authentication.getCredentials();
-                request.setAttribute("username", credential.getUsername());
-                request.setAttribute("firstname", credential.getFirstname());
-                request.setAttribute("lastname", credential.getLastname());
-                request.setAttribute("age", credential.getAge());
-                request.setAttribute("email", credential.getEmail());
-                request.setAttribute("gender", credential.getGender());
-
+                session.setAttribute("username", credential.getUsername());
+                session.setAttribute("firstname", credential.getFirstname());
+                session.setAttribute("lastname", credential.getLastname());
+                session.setAttribute("age", credential.getAge());
+                session.setAttribute("email", credential.getEmail());
+                session.setAttribute("gender", credential.getGender());
+                //CATEGORIES
+             
+                
+             //   session.setAttribute("news",credential.categories[1]);     
+             
             } else {
                 System.out.println("fail"); //Handle here if login fails
             }

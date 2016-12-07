@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Formatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -66,8 +68,32 @@ public class Authentication extends Database {
         credential.setAge(result.getInt("Age"));
         credential.setEmail(result.getString("Email"));
         credential.setGender(result.getString("Gender"));
+        
+         getCategories(credential); 
 
         return credential;
+    }
+    public void getCategories(Credentials credential) throws SQLException {
+          
+        Connection conection = getConnection();
+        String query = "SELECT * FROM UsersFavoriteTable WHERE UsernameCategoryID = 2";
+        Statement st;
+     
+            st = conection.createStatement();
+            result = st.executeQuery(query);
+           
+      
+        
+        while (result.next()) {
+
+            try {
+                
+                credential.categories[0] = result.getInt("Movies");
+                //credential.categories[1] = result.getInt("News"); 
+            } catch (SQLException ex) {
+                System.out.println("error en getInt"); 
+            }
+        }
     }
 
     private static String encodePassword(String password) {

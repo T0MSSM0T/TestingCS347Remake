@@ -3,19 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/Users/hirstrb/NetBeansProjects/TestingCS347Remake/WebApplication1/src/java/Model/Website.java</file>
-            <file>file:/Users/hirstrb/NetBeansProjects/TestingCS347Remake/WebApplication1/web/index.jsp</file>
-            <file>file:/Users/hirstrb/NetBeansProjects/TestingCS347Remake/WebApplication1/web/websiteinfo.jsp</file>
-            <file>file:/Users/hirstrb/NetBeansProjects/TestingCS347Remake/WebApplication1/src/java/encrypt.java</file>
-            <file>file:/Users/hirstrb/NetBeansProjects/TestingCS347Remake/WebApplication1/web/login.jsp</file>
-=======
-            <file>file:/Users/schieftg/TestingCS347Remake/WebApplication1/src/java/Model/User.java</file>
-            <file>file:/Users/schieftg/TestingCS347Remake/WebApplication1/src/java/Model/CategoryList.java</file>
-            <file>file:/Users/schieftg/TestingCS347Remake/WebApplication1/src/java/Model/Authentication.java</file>
-            <file>file:/Users/schieftg/TestingCS347Remake/WebApplication1/web/register.jsp</file>
-            <file>file:/Users/schieftg/TestingCS347Remake/WebApplication1/src/java/Controller/RegisterServlet.java</file>
->>>>>>> e060b443c800d37d71863f34e9cbe107f2190ac6
+            <file>file:/Users/perezcx/Netbeans/TestingCS347Remake/WebApplication1/src/java/Model/Authentication.java</file>
+            <file>file:/Users/perezcx/Netbeans/TestingCS347Remake/WebApplication1/web/login.jsp</file>
+            <file>file:/Users/perezcx/Netbeans/TestingCS347Remake/WebApplication1/src/java/Controller/LoginServlet.java</file>
+            <file>file:/Users/perezcx/Netbeans/TestingCS347Remake/WebApplication1/src/java/Model/Credentials.java</file>
         </group>
     </open-files>
 </project-private>
