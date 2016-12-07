@@ -64,7 +64,7 @@ public class LoginServlet extends Forwarder {
                 System.out.println("fail"); //Handle here if login fails
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EmailServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         forwardTo(nextView, request, response);
     }

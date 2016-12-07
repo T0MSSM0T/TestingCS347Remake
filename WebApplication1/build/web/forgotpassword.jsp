@@ -13,10 +13,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-
         <link rel="shortcut icon" href="logo.png"/>
         <title>Login</title>
+        
+        <script type="text/javascript">
+            function sendPassword() {
+                var msg = alert("An email has been set with a link to reset your password.");
+            }
+        </script>
+        
     </head>
+    
     <body>
         <div>
             <jsp:include page="navigationbar.jsp"/>
@@ -46,7 +53,7 @@
                     </div>
                 </div>
 
-                <input type="submit" class="btn btn-primary btn-lg btn-group-vertical" value="Send Password" name="action"/>
+                <input type="submit" class="btn btn-primary btn-lg btn-group-vertical" value="Send Password" name="action" onclick="sendPassword()"/>
 
             </form> 
             <!--/.FORM -->   

@@ -76,7 +76,7 @@ public class RegisterServlet extends Forwarder {
         try {
             register.insertRegister();
         } catch (SQLException ex) {
-            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EmailServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         forwardTo(nextView, request, response);
     }
