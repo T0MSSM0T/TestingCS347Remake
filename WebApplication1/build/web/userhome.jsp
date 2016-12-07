@@ -33,7 +33,7 @@
                         out.println("<div align=\"middle\">");
                         out.println("<p>" + posJJ + ". </p>");
                         out.println("<p> Site: " + websites.get(jj).getSiteTitle() + "</p>");
-                        out.println("<p> Link: <a href=\"https://" + websites.get(jj).getHyperLink() + "\">"
+                        out.println("<p> Link: <a href=\"https://" + websites.get(jj).getHyperLink() + "\" style=\"color:blue;\">"
                                 + websites.get(jj).getSiteTitle() + "</a></p>");
                         out.println("<p> Ads: " + websites.get(jj).getAdCount() + "</p>");
                         out.println("<p> Rating: " + websites.get(jj).getRating() + "</p>");
