@@ -81,9 +81,7 @@ public class Authentication extends Database {
      
             st = conection.createStatement();
             result = st.executeQuery(query);
-           
       
-        
         while (result.next()) {
 
             try {
