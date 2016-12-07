@@ -46,7 +46,7 @@ public class RegisterServlet extends Forwarder {
 
         String nextView = "/";
 
-        nextView = "/userinfo.jsp";
+        nextView = "/login.jsp";
         String username = request.getParameter("regusername");
         String password = request.getParameter("regpassword");
         String password2 = request.getParameter("regcnfmpassword");

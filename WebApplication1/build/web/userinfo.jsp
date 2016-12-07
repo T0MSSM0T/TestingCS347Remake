@@ -86,42 +86,42 @@
                 <div style="background-color:#E5E4E2 !important;" class="jumbotron">
                     <fieldset>
                         <div class="custom-control-input">
-                            <input id="movies" name="checkeditmovies"  type="checkbox" disabled="true">
+                            <input id="movies" name="checkeditmovies" <%if((Boolean)session.getAttribute("movies"))out.println("checked=\"checked\"");%> type="checkbox" disabled="true">
                             <label>
                                 Movies
                             </label>
                         </div>
 
                         <div class="custom-control-input">
-                            <input id="sports" name="checkeditsports" checked="" type="checkbox" disabled="true">
+                            <input id="sports" name="checkeditsports"  <%if((Boolean)session.getAttribute("sports"))out.println("checked=\"checked\"");%>type="checkbox" disabled="true">
                             <label>
                                 Sports
                             </label>
                         </div>
 
                         <div class="custom-control-input">
-                            <input id="technology" name="checkedittech" type="checkbox" disabled="true">
+                            <input id="technology" name="checkedittech" <%if((Boolean)session.getAttribute("technology"))out.println("checked=\"checked\"");%> type="checkbox" disabled="true">
                             <label for="technology">
                                 Technology
                             </label>
                         </div>
 
                         <div class="custom-control-input">
-                            <input id="news" name="checkeditnews" checked="<%=session.getAttribute("news")%>"type="checkbox" disabled="true">
+                            <input id="news" name="checkeditnews" <%if((Boolean)session.getAttribute("news"))out.println("checked=\"checked\"");%> type="checkbox" disabled="true">
                             <label>
                                 News
                             </label>
                         </div>
 
                         <div class="custom-control-input">
-                            <input id="innovative" name="checkeditinnovative" type="checkbox" disabled="true">
+                            <input id="innovative" name="checkeditinnovative" <%if((Boolean)session.getAttribute("innovative"))out.println("checked=\"checked\"");%> type="checkbox" disabled="true">
                             <label>
                                 Innovative
                             </label>
                         </div>
 
                         <div class="custom-control-input">
-                            <input id="streaming" name="checkeditstreaming" type="checkbox" disabled="true">
+                            <input id="streaming" name="checkeditstreaming" <%if((Boolean)session.getAttribute("streaming"))out.println("checked=\"checked\"");%> type="checkbox" disabled="true">
                             <label>
                                 Streaming
                             </label>
