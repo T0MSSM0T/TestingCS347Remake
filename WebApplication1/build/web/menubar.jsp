@@ -12,6 +12,11 @@
         <link href="css/bootstrap.css" rel="stylesheet">
         <!-- Custom CSS -->
         <link href="css/small-business.css" rel="stylesheet">
+        <script type="text/javascript">
+            function logout() {
+                var msg = alert("You have successfully logged out.");
+            }
+        </script>
     </head>
     <body>
         <!-- Navigation -->
@@ -46,7 +51,7 @@
                             <a href="favorites.jsp" style="background-color: #00B8E6;">Favorites</a>
                         </li>
                         <li>
-                            <a href="logout.jsp" style="background-color: #00B8E6;">Logout</a>
+                            <a href="index.jsp" style="background-color: #00B8E6;" onclick="logout()">Logout</a>
                         </li>
                     </ul>
                 </div>
