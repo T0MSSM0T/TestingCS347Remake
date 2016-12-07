@@ -5,31 +5,23 @@
  */
 package Controller;
 
-import Model.User;
 import Model.GMailAuthenticator;
-import Model.Credentials;
-import Model.Authentication;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.mail.*;
 import javax.mail.internet.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author perezcx
  */
 @WebServlet(name = "Controller", urlPatterns = {"/control"})
-public class Controller extends HttpServlet {
+public class Controller extends Forwarder {
 
     /**
      * Handle an HTTP POST transaction for a drop or add.
@@ -56,16 +48,16 @@ public class Controller extends HttpServlet {
 
             } // forgot password 
             else if (action.equals("Send Password")) {
-                String to = "hirstrb@dukes.jmu.edu";
+                String to = request.getParameter("pwdresetemail");
                 String from = "easyefo@gmail.com";
                 Properties properties = System.getProperties();
                 properties.put("mail.smtp.starttls.enable", "true");
                 properties.put("mail.smtp.host", "smtp.gmail.com");
-                properties.put("mail.smtp.user", "rmbh4211995@gmail.com"); // User name
-                properties.put("mail.smtp.password", "H@Lo4211995"); // password
+                properties.put("mail.smtp.user", "easyefo@gmail.com"); // User name
+                properties.put("mail.smtp.password", "compscience"); // password
                 properties.put("mail.smtp.port", "587");
                 properties.put("mail.smtp.auth", "true");
-                Session session = Session.getInstance(properties, new GMailAuthenticator("rmbh4211995@gmail.com", "H@Lo4211995"));
+                Session session = Session.getInstance(properties, new GMailAuthenticator("easyefo@gmail.com", "compscience"));
 
                 try {
                     MimeMessage message = new MimeMessage(session);
@@ -78,7 +70,6 @@ public class Controller extends HttpServlet {
                     multipart.addBodyPart(messageBodyPart);
                     message.setContent(multipart);
                     Transport.send(message);
-                    System.out.println("Email sent successfully.");
                 } catch (MessagingException mex) {
                     mex.printStackTrace();
                 }
@@ -88,7 +79,7 @@ public class Controller extends HttpServlet {
                 nextView = "/login.jsp";
             }
             // forward to w/e View component
-
+            forwardTo(nextView, request, response);
         }
 
     }
