@@ -18,6 +18,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
+        <link href="css/website.css" rel="stylesheet">
         <link rel="shortcut icon" href="logo.png"/>
         <title>Random Shuffle</title>
     </head>
@@ -27,19 +28,24 @@
         </div>
         
 
-        <div>
+        <div class="shuffle-style">
             <%
                 Random rand = new Random();
                 ArrayList<Website> sites = websiteList.getWebsites();
                 Integer randomInt = rand.nextInt(sites.size());
                 Website chosen = sites.get(randomInt);
-                out.print("<iframe height=\"600\" width=\"600\" align=\"middle\" src=\"https://" + chosen.getIFrame() + "\">" + "</iframe>");
-                out.print("<p>"+"Random Int is: "+ randomInt + "</p>");
-                out.print("<p>"+"Website: "+ chosen.getSiteTitle() + "</p>");
-                out.print("<p>"+"Ad Count: "+ chosen.getAdCount() + "</p>");
-                out.print("<p>"+"Rating "+ chosen.getRating() + "</p>");                
-                out.print("<p>"+"Category: "+ chosen.getCategoryIDLink() + "</p>");
-                out.print("<p><a href=\"http://"+ chosen.getHyperLink() + "\">" + chosen.getSiteTitle() + "</a></p>");
+                out.print("<iframe height=\"600\" width=\"100%\" align=\"middle\" src=\"https://" + chosen.getIFrame() + "\">" + "</iframe>");
+                out.print("<label style=\"padding-top: 1%;\">Random Int:</label>" + " " + randomInt);
+                out.print("<hr>");
+                out.print("<label>Website:</label>" + " " + chosen.getSiteTitle());
+                out.print("<hr>");
+                out.print("<label>Ad Count:</label>" + " " + chosen.getAdCount());
+                out.print("<hr>");
+                out.print("<label>Rating:</label>" + " " + chosen.getRating());    
+                out.print("<hr>");
+                out.print("<label>Category:</label>" + " " + chosen.getCategoryIDLink());
+                out.print("<hr>");
+                out.print("<label style=\"padding-bottom: 3%;\">Link:</label>" + " " + "<a href=\"http://"+ chosen.getHyperLink() + "\"style=\"color: blue;\">" + chosen.getSiteTitle() + "</a>");
             %>
         </div>
     </body>
