@@ -56,6 +56,14 @@ public class LoginServlet extends Forwarder {
                 //CATEGORIES
              
              //   session.setAttribute("news",credential.categories[1]);     
+                
+                session.setAttribute("movies", credential.categories[0]);
+                session.setAttribute("sports",credential.categories[1]); 
+                session.setAttribute("technology",credential.categories[2]); 
+                session.setAttribute("news",credential.categories[3]); 
+                session.setAttribute("innovative",credential.categories[4]); 
+                session.setAttribute("streaming",credential.categories[5]); 
+                
              
             } else {
                 System.out.println("fail"); //Handle here if login fails

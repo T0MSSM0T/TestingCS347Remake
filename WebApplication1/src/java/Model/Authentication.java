@@ -26,7 +26,7 @@ public class Authentication extends Database {
 
     private String username;
     private String password;
-    int pk;
+    int categoryid;
     ResultSet result;
 
     public Authentication(String username, String password) {
@@ -43,7 +43,7 @@ public class Authentication extends Database {
         
         while (result.next()) {
             if (username.equals(result.getString("Username")) && hash.equals(result.getString("Password"))) {
-                pk = result.getInt("UserID");
+                categoryid = result.getInt("FavoriteCategoryIDLink");
                 return true;
             }
         }
@@ -76,7 +76,7 @@ public class Authentication extends Database {
     public void getCategories(Credentials credential) throws SQLException {
           
         Connection conection = getConnection();
-        String query = "SELECT * FROM UsersFavoriteTable WHERE UsernameCategoryID = 2";
+        String query = "SELECT * FROM UsersFavoriteTable WHERE UsernameCategoryID ="+categoryid;
         Statement st;
      
             st = conection.createStatement();
@@ -86,8 +86,13 @@ public class Authentication extends Database {
 
             try {
                 
-                credential.categories[0] = result.getInt("Movies");
-                //credential.categories[1] = result.getInt("News"); 
+                credential.categories[0] = result.getInt("Movies")==1?true:false; 
+                credential.categories[1] = result.getInt("Sports")==1?true:false;
+                credential.categories[2] = result.getInt("Technology")==1?true:false;
+                credential.categories[3] = result.getInt("News")==1?true:false;
+                credential.categories[4] = result.getInt("Innovative")==1?true:false;
+                credential.categories[5] = result.getInt("Streaming")==1?true:false;
+           
             } catch (SQLException ex) {
                 System.out.println("error en getInt"); 
             }
