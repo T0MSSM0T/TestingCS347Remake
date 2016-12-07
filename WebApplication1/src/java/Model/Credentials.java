@@ -17,7 +17,7 @@ public class Credentials {
     private int age;
     private String email;
     private String gender;
-    public int categories[] = new int[5]; 
+    public boolean categories[] = new boolean[6]; 
 
     public Credentials(String username, String firstname, String lastname, int age, String email, String gender) {
         this.username = username;
