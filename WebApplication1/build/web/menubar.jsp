@@ -45,6 +45,9 @@
                         <li>
                             <a href="favorites.jsp" style="background-color: #00B8E6;">Favorites</a>
                         </li>
+                        <li>
+                            <a href="logout.jsp" style="background-color: #00B8E6;">Logout</a>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->

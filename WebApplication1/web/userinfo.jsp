@@ -27,6 +27,7 @@
             document.getElementById("technology").disabled = false;
             document.getElementById("innovative").disabled = false;
             document.getElementById("streaming").disabled = false;
+            document.getElementById("news").disabled = false;
         }
      
     </script>

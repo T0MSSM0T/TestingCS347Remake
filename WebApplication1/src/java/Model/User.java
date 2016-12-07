@@ -20,7 +20,6 @@ import java.util.ArrayList;
 public class User extends Database {
 
     static String ROLE = "User";
-    static int ID = 10;
     private String username;
     private String password;
     private String password2;
@@ -126,8 +125,8 @@ public class User extends Database {
         Statement q = co.createStatement();
         ResultSet res = q.executeQuery(countQ);
         res.next();
-        int rows = res.getInt("COUNT(*)") + 1;
-        
+        int rows = res.getInt("COUNT(*)") + 1;//PRIMARY KEY IN UsersFavorityTable
+        System.out.println("Rows=="+rows); 
         String sql1 = "INSERT INTO UserTable VALUES(?,?,?,?,?,?,?,?,?,?)";
         /**
         String sql2 = "INSERT INTO UsersFavoriteTable VALUES(" + rows + ",";
@@ -141,10 +140,22 @@ public class User extends Database {
         Statement sts2 = co.createStatement();
         sts2.executeUpdate(sql2);
         **/
+        
+        //ROWS IS THE PRIMARY KEY IN THE UsersFavorityTable AND THE LINK IN THE
+        //FavoriteCategoryIDLink
+        String sql2 = "INSERT INTO UsersFavoriteTable VALUES(" + rows ;
+        for (Integer cat : favsC) {
+            sql2 += ","+cat; 
+        }
+        sql2 += ")"; 
+        Statement sts2 = co.createStatement(); 
+        sts2.execute(sql2); //INSERTING CATEGORIES IN UsersFavoriteTable
+        
+        
         PreparedStatement sts1 = co.prepareStatement(sql1);
         
-        sts1.setInt(1, ID);//Quesry database to get last id + 1
-        sts1.setInt(2, 7);
+        sts1.setInt(1, rows);//Quesry database to get last id + 1
+        sts1.setInt(2, rows);
         sts1.setString(3, username);
         sts1.setString(4, password);
         sts1.setString(5, email);
@@ -154,7 +165,7 @@ public class User extends Database {
         sts1.setString(9, gender);
         sts1.setString(10, ROLE);
         sts1.executeUpdate();
-        ID++;
+   
     }
 
     private int parseInt(String name) {
