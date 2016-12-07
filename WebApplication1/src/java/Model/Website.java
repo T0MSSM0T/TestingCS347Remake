@@ -126,6 +126,34 @@ public class Website extends Database {
         return hyperlinks;
     }
 
+    public ArrayList<Website> getCategoryWebsites(int category) {
+        ArrayList<Website> categoryWebsites = new ArrayList<Website>();
+        Connection co = getConnection();
+        String sql = "SELECT * FROM SitesTables WHERE CategoryIDLink = " + category;
+
+        try {
+            Statement st = co.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                int sID = rs.getInt(1);
+                int cLink = rs.getInt(2);
+                String sTitle = rs.getString(3);
+                String hLink = rs.getString(4);
+                int aCount = rs.getInt(5);
+                String note = rs.getString(6);
+                int rate = rs.getInt(7);
+                String frame = rs.getString(8);
+
+                Website site = new Website(sID, cLink, sTitle, hLink, aCount, note, rate, frame);
+                categoryWebsites.add(site);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Website.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return categoryWebsites;
+    }
+
     public ArrayList<Website> getWebsites() {
         ArrayList<Website> websites = new ArrayList<Website>();
         Connection co = getConnection();

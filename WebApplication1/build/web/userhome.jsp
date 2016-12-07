@@ -23,15 +23,17 @@
 
         <ul>
             <%
-                ArrayList<Website> websites = websiteList.getWebsites();
                 ArrayList<String> categories = ctList.getCategories();
+                ArrayList<Website> websites = websiteList.getWebsites();
                 for (int ii = 0; ii < categories.size(); ii++) {
+                    out.println("<fielset class=\"toggleAble\"><legend> " + categories.get(ii) + "</legend>");
+                    
                     for (int jj = 0; jj < websites.size(); jj++) {
-                        out.println("<fielset class=\"toggleAble\"><legend> " + categories.get(ii) + "</legend>");
-                        out.println("<div> Website: " + websites.get(jj).getSiteTitle());
-                        out.println("Rating: " + websites.get(jj).getRating());
-                        out.println("</div></fieldset>");
+                        out.println("<div>");
+                        out.println("<p> Website: " + websites.get(jj).getSiteTitle() + "</p>");
+                        out.println("<p> Rating: " + websites.get(jj).getRating() + "</p>");
                     }
+                    out.println("</div></fieldset>");
                 }
             %>
         </ul>

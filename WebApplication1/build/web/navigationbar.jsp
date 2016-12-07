@@ -34,7 +34,7 @@
                             <a href="index.jsp"><img src="logo.png" alt="" style="width:90px; height:50px"></a>
                         </li>
                         <li>
-                            <a href="login.jsp">Back</a>
+                            <a href="index.jsp">Back</a>
                         </li>
                     </ul>
                 </div>
