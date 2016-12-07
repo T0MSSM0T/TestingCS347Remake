@@ -8,13 +8,11 @@ package Controller;
 import Model.Authentication;
 import Model.Credentials;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -56,6 +54,8 @@ public class LoginServlet extends Forwarder {
                 session.setAttribute("email", credential.getEmail());
                 session.setAttribute("gender", credential.getGender());
                 //CATEGORIES
+             
+             //   session.setAttribute("news",credential.categories[1]);     
                 
                 session.setAttribute("movies", credential.categories[0]);
                 session.setAttribute("sports",credential.categories[1]); 
@@ -64,7 +64,6 @@ public class LoginServlet extends Forwarder {
                 session.setAttribute("innovative",credential.categories[4]); 
                 session.setAttribute("streaming",credential.categories[5]); 
                 
-           
              
             } else {
                 System.out.println("fail"); //Handle here if login fails
