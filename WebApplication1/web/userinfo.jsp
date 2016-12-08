@@ -16,7 +16,7 @@
     <script type="text/javascript">
         function enable()
         {
-            document.getElementById("username").disabled = false;
+            //document.getElementById("username").disabled = false; 
             document.getElementById("firstname").disabled = false;
             document.getElementById("lastname").disabled = false;
             document.getElementById("age").disabled = false;
@@ -40,7 +40,7 @@
         <div class="container">
             <br/><br/>
             <!--FORM --> 
-            <form action="userinfo" method="POST">
+            <form action="edituser" method="POST">
                 <div class="form-group row">
                     <label for="example-text-input" class="col-xs-2 col-form-label">Username:</label>
                     <div class="col-xs-10">
@@ -132,7 +132,7 @@
                 </div><!--jumbotron-->
 
                 <button type="button" onclick="enable()" value="" class="btn btn-primary btn-lg">Edit</button>
-                <button type="button" value="" class="btn btn-primary btn-lg">Save</button>
+                <button type="submit" value="" class="btn btn-primary btn-lg">Save</button>
                 <button type="button" value="" class="btn btn-primary btn-lg">Cancel</button>
             </form>   
             <!--/.FORM -->  

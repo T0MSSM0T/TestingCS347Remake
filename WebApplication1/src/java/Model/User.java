@@ -33,7 +33,16 @@ public class User extends Database {
     public User() {
 
     }
-
+    
+    public User(String username, String firstname, String lastname, String email, String age, String gender, ArrayList<Integer> favs){
+        this.username = username;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.age = parseInt(age);
+        this.email = email;
+        this.gender = gender;
+        this.favsC = favs;
+    }
     public User(String username, String password, String password2, String firstname, String lastname, String email, String age, String gender, ArrayList<Integer> favs) {
         this.username = username;
         this.password = password;
@@ -117,7 +126,15 @@ public class User extends Database {
     public void setGender(String gender) {
         this.gender = gender;
     }
-
+    public void editRegister() throws SQLException {
+        Connection con = getConnection();
+        String selectrow = "UPDATE UserTable SET Email = '"+email+"', FirstName = '"+firstname+"',LastName = '"+lastname+"',Age = '"+age+"',Gender = '"+gender+"' WHERE Username = '"+username+"'"; 
+        PreparedStatement sts1 = con.prepareStatement(selectrow);
+        sts1.executeUpdate();  //(selectrow);
+        
+     
+     
+    }
     public void insertRegister() throws SQLException {
         Connection co = getConnection();
         
@@ -178,4 +195,5 @@ public class User extends Database {
         return 0;
     }
 
+    
 }
