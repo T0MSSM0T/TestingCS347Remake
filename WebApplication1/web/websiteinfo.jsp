@@ -1,3 +1,4 @@
+<%@page import="java.io.IOException"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,6 +18,18 @@
         <div>
             <jsp:include page="menubar.jsp"/>
         </div>
+
+        <%
+            try {
+                Boolean loggedIn = (Boolean) session.getAttribute("logged_in");
+                if (loggedIn == null || !loggedIn) {
+                    response.sendRedirect(request.getContextPath());   // go to the home page
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        %>
+        
         <!-- Page Content -->
         <div class="container">
             <br/><br/>
