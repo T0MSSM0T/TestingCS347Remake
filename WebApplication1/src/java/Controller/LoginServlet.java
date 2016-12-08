@@ -46,6 +46,8 @@ public class LoginServlet extends Forwarder {
             if (authentication.authenticate()) {
                 System.out.println("Succes");
                 nextView = "/userinfo.jsp";
+                
+                session.setAttribute("logged_in", true);
                 Credentials credential = authentication.getCredentials();
   
                 session.setAttribute("username", credential.getUsername());
