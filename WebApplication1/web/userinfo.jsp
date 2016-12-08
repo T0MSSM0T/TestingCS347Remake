@@ -1,5 +1,7 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="Model.User"%>
 <jsp:useBean class="Model.User" id="curUser" scope="session"/>
+<jsp:useBean class="Model.CategoryList" id="CL" scope="session"/>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -86,15 +88,31 @@
                 <!--categories checkbox --> 
                 <div style="background-color:#E5E4E2 !important;" class="jumbotron">
                     <fieldset>
+                        
+                        <%
+//                            ArrayList<String> list = CL.getCategories();
+//                            for(int i = 0; i < list.size(); i++)
+//                            {
+//                                out.println("<div class=\"custom-control-input\">");
+//                                out.print("<input id=\"" + list.get(i) + "\" ");
+//                                out.print("name=\"checkedit" + list.get(i) + "\" ");
+//                                out.print("<%if((Boolean)session.getAttribute(\"" + list.get(i) + "\"))");
+//                                        
+//                                out.print("out.print(\"checked=\\\"checked\\\"\");");
+//                                out.println("<label>");
+//                                out.println("\t" + list.get(i));
+//                                out.println("</label>");
+//                            }
+                        %>
                         <div class="custom-control-input">
-                            <input id="movies" name="checkeditmovies" <%if((Boolean)session.getAttribute("movies"))out.println("checked=\"checked\"");%> type="checkbox" disabled="true">
+                            <input id="movies" name="checkeditmovies" <%if((Boolean)session.getAttribute("movies"))out.println("checked");%> type="checkbox" disabled="true">
                             <label>
                                 Movies
                             </label>
                         </div>
 
                         <div class="custom-control-input">
-                            <input id="sports" name="checkeditsports"  <%if((Boolean)session.getAttribute("sports"))out.println("checked=\"checked\"");%>type="checkbox" disabled="true">
+                            <input id="sports" name="checkeditsports" <%if((Boolean)session.getAttribute("sports"))out.println("checked=\"checked\"");%>type="checkbox" disabled="true">
                             <label>
                                 Sports
                             </label>

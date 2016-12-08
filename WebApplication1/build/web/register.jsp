@@ -35,17 +35,17 @@
 
                 function validatePassword()
                 {
-                var match = true
-                var password = get('password').value
-                var passwordConfirm = get('passwordcnfm').value
-                get('passwordcnfmerr').innerHTML = ''
+                    var match = true
+                    var password = get('password').value
+                    var passwordConfirm = get('passwordcnfm').value
+                    get('passwordcnfmerr').innerHTML = ''
 
-                if (password != passwordConfirm){
-                get('passwordcnfmerr').innerHTML = 'Passwords do not match'
-                match = false
-                }
+                    if (password != passwordConfirm){
+                        get('passwordcnfmerr').innerHTML = 'Passwords do not match'
+                        match = false
+                    }
 
-                return match
+                    return match
                 }
 
                 function get(id) { return document.getElementById(id) }
@@ -120,10 +120,9 @@
                     <fieldset>
                         <%
                             ArrayList<String> list = CL.getCategories();
-                            for (int i = 0; i < list.size(); i++)
-                            {
+                            for (int i = 0; i < list.size(); i++) {
                                 out.print("<div class=\"custom-control-input\">");
-                                out.print("<input id=\""+ list.get(i) +"\" name=\"check" + list.get(i) + "\" type=\"checkbox\" >");
+                                out.print("<input id=\"" + list.get(i) + "\" name=\"check" + list.get(i) + "\" type=\"checkbox\" >");
                                 out.print("<label>" + list.get(i) + "</label></div>");
                             }
                         %>
