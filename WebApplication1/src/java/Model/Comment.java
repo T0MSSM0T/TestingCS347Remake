@@ -2,7 +2,8 @@ package Model;
 
 import Database.Database;
 import java.sql.Connection;
-import java.sql.Date;
+import java.util.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -24,10 +25,10 @@ public class Comment extends Database {
     ArrayList<Comment> comments;
 
     public Comment() {
-        
+
     }
 
-    private Comment(int cID, int sID, String un, String comMade, Date da) {
+    public Comment(int cID, int sID, String un, String comMade, Date da) {
         this.commentID = cID;
         this.siteID = sID;
         this.username = un;
@@ -121,5 +122,25 @@ public class Comment extends Database {
             Logger.getLogger(Website.class.getName()).log(Level.SEVERE, null, ex);
         }
         return all;
+    }
+
+    public void insertComment() throws SQLException {
+        int count = 0;
+        Connection co = getConnection();
+        String countQ = "SELECT COUNT(*) FROM CommentsTable";
+        Statement q = co.createStatement();
+        ResultSet res = q.executeQuery(countQ);
+        res.next();
+
+        int rows = res.getInt("COUNT(*)") + 1;
+
+        String sql = "INSERT INTO CommentsTable VALUES(?, ?, ?, ?, ?)";
+        PreparedStatement ps = co.prepareStatement(sql);
+        ps.setInt(1, rows);
+        ps.setInt(2, siteID);
+        ps.setString(3, username);
+        ps.setString(4, commentMade);
+        ps.setDate(5, null);
+        ps.executeUpdate();
     }
 }

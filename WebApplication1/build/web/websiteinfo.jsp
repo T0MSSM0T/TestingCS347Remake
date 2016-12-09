@@ -68,9 +68,9 @@
 
                 <div class="form-group row">
                     <div class="col-xs-10">
-                        <form action="WebsiteServlet" method="POST">
-                            <textarea class="form-control" rows="8" cols="60"></textarea>
-                            <input type="submit" value="Comment" name="comment" class="btn btn-primary btn-lg"/>
+                        <form action="CommentServlet" method="GET">
+                            <textarea class="form-control" rows="8" cols="60" name ="commentText"></textarea>
+                            <input type="submit" value="Comment" name="action" class="btn btn-primary btn-lg btn-block"/>
                         </form>
 
                     </div>

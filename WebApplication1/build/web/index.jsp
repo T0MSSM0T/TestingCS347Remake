@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="Model.CategoryList"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -20,7 +22,21 @@
         <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
     </head>
+    <%
 
+        CategoryList obj = new CategoryList();
+        ArrayList<String> catList = obj.getCategories();
+        session.setAttribute("username", "");
+        session.setAttribute("firstname", "");
+        session.setAttribute("lastname", "");
+        session.setAttribute("age", "");
+        session.setAttribute("email", "");
+        session.setAttribute("gender", "");
+
+        for (int i = 0; i < catList.size(); i++) {
+            session.setAttribute(catList.get(i), "");
+        }
+    %>
     <body>
 
         <!-- Header -->

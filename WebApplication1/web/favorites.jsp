@@ -31,7 +31,7 @@
                     ArrayList<String> catList = categoryList.getCategories();
                     ArrayList<String> items = new ArrayList<>();
                     for (int ii = 0; ii < catList.size(); ii++) {
-                        items.add(session.getAttribute(catList.get(ii).toLowerCase()).toString());
+                        items.add(session.getAttribute(catList.get(ii)).toString());
 
                         int pos = ii + 1;
                         if (items.get(ii).equals("true")) {
