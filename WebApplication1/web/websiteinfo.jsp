@@ -16,7 +16,7 @@
         <meta name="author" content="">
 
         <link rel="shortcut icon" href="logo.png"/>
-        <title>User Info</title>
+        <title>Website Info</title>
     </head>
 
     <body>
@@ -37,18 +37,18 @@
 
         <div class="container">
             <br/><br/>
-            <form action="websiteinfo" method="POST">
+            <form action="CommentServlet" method="GET">
                 <div class="form-group row">
                     <label for="example-text-input" class="col-xs-2 col-form-label">Title:</label>
                     <div class="col-xs-10">
-                        <input class="form-control" value="" name="sitetitle" type="text" id="title" readonly>
+                        <input class="form-control" value="<%=session.getAttribute("websitetitle")%>" name="sitetitle" type="text" id="title" readonly>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="example-search-input" class="col-xs-2 col-form-label">Link:</label>
                     <div class="col-xs-10">
-                        <input class="form-control" name="sitelink" type="text" id="link" readonly>
+                        <input class="form-control" value="<%=session.getAttribute("websitelink")%>" name="sitelink" type="text" id="link" readonly>
                     </div>
                 </div>
 
@@ -62,9 +62,9 @@
                 <div class="form-group row">
                     <label for="example-url-input" class="col-xs-2 col-form-label">Rating:</label>
                     <div class="col-xs-10">
-                        <input class="form-control" name="siterating" type="text" id="rating" readonly>
+                        <input class="form-control" value="<%=session.getAttribute("websiterating")%>" name="siterating" type="text" id="rating" readonly>
                     </div>
-                </div>
+                </div>    
 
                 <div class="form-group row">
                     <div class="col-xs-10">
@@ -77,7 +77,7 @@
                 </div>
 
                 <%
-                    ArrayList<Comment> comments = commentList.getComments();
+                    ArrayList<Comment> comments = commentList.getCommentsBySite((int)session.getAttribute("siteid"));
                     for (int ii = 0; ii < comments.size(); ii++) {
                         int pos = ii + 1;
                         out.println("<fieldset><legend>" + "Comment #" + pos);

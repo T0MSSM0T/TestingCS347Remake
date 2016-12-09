@@ -39,6 +39,7 @@
 
                             for (int jj = 0; jj < websites.size(); jj++) {
                                 int posJJ = jj + 1;
+                                out.println("<form action=\"CommentServlet\" method=\"POST\">"); 
                                 out.println("<div align=\"middle\">");
                                 out.println("<p>" + posJJ + ". </p>");
                                 out.println("<p> Site: " + websites.get(jj).getSiteTitle() + "</p>");
@@ -47,6 +48,11 @@
                                         + websites.get(jj).getSiteTitle() + "</a></p>");
                                 out.println("<p> Ads: " + websites.get(jj).getAdCount() + "</p>");
                                 out.println("<p> Rating: " + websites.get(jj).getRating() + "</p>");
+                                
+                                //session.setAttribute(websites.get(jj).getSiteTitle(), websites.get(jj));
+                                session.setAttribute(jj+"",websites.get(jj));
+                                out.println("<form>");
+                                out.println("<button type=\"submit\">Info</button> ");
                             }
                         }
                     }

@@ -6,6 +6,7 @@
 package Controller;
 
 import Model.Comment;
+import Model.Website;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Date;
@@ -24,6 +25,22 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "CommentServlet", urlPatterns = {"/CommentServlet"})
 public class CommentServlet extends Forwarder {
 
+   @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+            
+        String nextView = "/websiteinfo.jsp";
+        Website site = (Website) session.getAttribute("website"); 
+        session.setAttribute("websitetitle",site.getSiteTitle());
+        session.setAttribute("websitelink",site.getHyperLink());
+        //session.setAttribute("websitetitle",site.);get info idk
+        session.setAttribute("websiterating",site.getRating());
+        session.setAttribute("siteid", site.getSiteID());
+     
+             
+          forwardTo(nextView, request, response);
+    }
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -36,13 +53,15 @@ public class CommentServlet extends Forwarder {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //response.setContentType("text/html;charset=UTF-8");
-        //HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
 
-        String nextView = "/index.jsp";
+        String nextView = "/websiteinfo.jsp";
         
-        /*int commentID = 1;
-        int siteID = 1;
-        String username = (String) session.getAttribute("loginusername");
+        int commentID = 1;
+        int siteID = 2;
+        
+        String username = (String) session.getAttribute("username");
+        System.out.println("username=="+username); 
         String comMade = request.getParameter("commentText");
         Date date = new Date();
         
@@ -51,7 +70,7 @@ public class CommentServlet extends Forwarder {
             comment.insertComment();
         } catch (SQLException ex) {
             Logger.getLogger(CommentServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        }
         
         forwardTo(nextView, request, response);
     }
