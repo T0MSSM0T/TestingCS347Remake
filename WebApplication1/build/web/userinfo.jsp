@@ -14,6 +14,7 @@
         <title>User Info</title>
     </head>
     <script type="text/javascript">
+        var clicked = false;
         function enable()
         {
             //document.getElementById("username").disabled = false; 
@@ -27,7 +28,12 @@
             document.getElementById("technology").disabled = false;
             document.getElementById("innovative").disabled = false;
             document.getElementById("streaming").disabled = false;
-            document.getElementById("news").disabled = false;
+            
+            clicked = true;
+            
+            if (clicked) {
+                <% out.println("document.getElementById(\"news\").disabled = false;"); %>
+            }
         }
      
     </script>

@@ -30,7 +30,7 @@ public class Website extends Database {
     String IFrame;
 
     public Website() {
-
+        
     }
 
     public Website(int siteID, int categoryIDLink, String siteTitle,
@@ -109,23 +109,6 @@ public class Website extends Database {
         this.IFrame = IFrame;
     }
 
-    public ArrayList<String> getHyperlinks() {
-        ArrayList<String> hyperlinks = new ArrayList<String>();
-        Connection co = getConnection();
-        String sql = "SELECT Hyperlink FROM SitesTable";
-        try {
-            Statement st = co.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            while (rs.next()) {
-                hyperlinks.add(rs.getString("Hyperlink"));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Website.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return hyperlinks;
-    }
-
     public ArrayList<Website> getCategoryWebsites(int category) {
         ArrayList<Website> categoryWebsites = new ArrayList<Website>();
         Connection co = getConnection();
@@ -152,6 +135,33 @@ public class Website extends Database {
         }
 
         return categoryWebsites;
+    }
+
+    public Website getWebsite(String siteTitle) {
+        Website site = null;
+        Connection co = getConnection();
+        String sql = "SELECT * FROM SitesTable WHERE SiteTitle=" + "\"" + siteTitle + "\"";
+
+        try {
+            Statement st = co.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                int sID = rs.getInt(1);
+                int cLink = rs.getInt(2);
+                String sTitle = rs.getString(3);
+                String hLink = rs.getString(4);
+                int aCount = rs.getInt(5);
+                String note = rs.getString(6);
+                int rate = rs.getInt(7);
+                String frame = rs.getString(8);
+
+                site = new Website(sID, cLink, sTitle, hLink, aCount, note, rate, frame);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Website.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return site;
     }
 
     public ArrayList<Website> getWebsites() {
