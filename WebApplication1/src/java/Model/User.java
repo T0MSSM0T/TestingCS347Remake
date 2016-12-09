@@ -161,13 +161,30 @@ public class User extends Database {
     }
 
     public void insertRegister() throws SQLException {
+        int count = 0;
+        
         Connection co = getConnection();
-
         String countQ = "SELECT COUNT(*) FROM UserTable";
         Statement q = co.createStatement();
         ResultSet res = q.executeQuery(countQ);
         res.next();
         int rows = res.getInt("COUNT(*)") + 1;
+        String check = "SELECT * FROM UserTable WHERE Username = ?";
+        PreparedStatement sts = co.prepareStatement(check);
+        sts.setString(1, username);
+        ResultSet result;
+        result = sts.executeQuery();
+        
+        while(result.next())
+        {
+            count++;
+        }
+        
+        if(count != 1)
+        {
+            return;
+        }
+        
         String sql1 = "INSERT INTO UserTable VALUES(?,?,?,?,?,?,?,?,?,?)";
 
         String sql2 = "INSERT INTO UsersFavoriteTable VALUES(" + rows;
