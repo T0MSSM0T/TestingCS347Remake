@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Model.CategoryList;
 import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,7 +25,7 @@ import javax.servlet.http.HttpSession;
  * @author perezcx
  */
 @WebServlet(name = "edituser", urlPatterns = {"/edituser"})
-public class EditUser extends HttpServlet {
+public class EditUser extends Forwarder {
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -38,52 +39,52 @@ public class EditUser extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession(); 
-         String nextView = "/";
+        HttpSession session = request.getSession();
+        String nextView = "/";
 
         nextView = "/userinfo.jsp";
-        
-        String username = (String)session.getAttribute("username");
+
+        String username = (String) session.getAttribute("username");
         String firstname = request.getParameter("editfirstname");
         String lastname = request.getParameter("editlastname");
         String email = request.getParameter("editemail");
         String age = request.getParameter("editage");
         String gender = request.getParameter("editgender");
-        ArrayList<Integer> categories = new ArrayList<>(); 
-        
-        if(request.getParameter("checkeditmovies") == null)
-            categories.add(0); 
-        else categories.add(1); 
-        if(request.getParameter("checkeditsports") == null)
-            categories.add(0); 
-        else categories.add(1); 
-        if(request.getParameter("checkedittech") == null)
-            categories.add(0); 
-        else categories.add(1); 
-        if(request.getParameter("checkeditnews") == null)
-            categories.add(0); 
-        else categories.add(1); 
-        if(request.getParameter("checkeditstreaming") == null)
-            categories.add(0); 
-        else categories.add(1); 
-        User edituser = new User(username,firstname,lastname,email,age,gender,categories); 
+
+        session.setAttribute("firstname", firstname);
+        session.setAttribute("lastname", lastname);
+        session.setAttribute("email", email);
+        session.setAttribute("age", age);
+        session.setAttribute("gender", gender);
+
+        CategoryList obj = new CategoryList();
+        ArrayList<String> catList = new ArrayList<String>();
+
+        ArrayList<Integer> categories = new ArrayList<Integer>();
+        try {
+            catList = obj.getCategories();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        for (int i = 0; i < catList.size(); i++) {
+            if (request.getParameter("checkedit" + catList.get(i)) == null) {
+                categories.add(0);
+                session.setAttribute(catList.get(i), false);
+            } else {
+                categories.add(1);
+                session.setAttribute(catList.get(i), true);
+            }
+        }
+
+        User edituser = new User(username, firstname, lastname, email, age, gender, categories);
         try {
             edituser.editRegister();
         } catch (SQLException ex) {
             Logger.getLogger(EditUser.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
-        for (Integer category : categories) {
-            System.out.println(category); 
-        }
-             
-        
-        
-        
-    }
 
- 
+        forwardTo(nextView, request, response);
+    }
 
 }

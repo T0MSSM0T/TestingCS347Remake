@@ -6,9 +6,11 @@
 package Controller;
 
 import Model.Authentication;
+import Model.CategoryList;
 import Model.Credentials;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -37,7 +39,7 @@ public class LoginServlet extends Forwarder {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession(); 
+        HttpSession session = request.getSession(true);
         String nextView = "/";
         String userid = request.getParameter("loginusername");
         String password = request.getParameter("loginpassword");
@@ -45,28 +47,22 @@ public class LoginServlet extends Forwarder {
         try {
             if (authentication.authenticate()) {
                 nextView = "/userinfo.jsp";
-                
+
                 session.setAttribute("logged_in", true);
                 Credentials credential = authentication.getCredentials();
-  
+                CategoryList obj = new CategoryList();
+                ArrayList<String> catList = obj.getCategories();
+
                 session.setAttribute("username", credential.getUsername());
                 session.setAttribute("firstname", credential.getFirstname());
                 session.setAttribute("lastname", credential.getLastname());
                 session.setAttribute("age", credential.getAge());
                 session.setAttribute("email", credential.getEmail());
                 session.setAttribute("gender", credential.getGender());
-                //CATEGORIES
-             
-             //   session.setAttribute("news",credential.categories[1]);     
-                
-                session.setAttribute("movies", credential.categories[0]);
-                session.setAttribute("sports",credential.categories[1]); 
-                session.setAttribute("technology",credential.categories[2]); 
-                session.setAttribute("news",credential.categories[3]); 
-                session.setAttribute("innovative",credential.categories[4]); 
-                session.setAttribute("streaming",credential.categories[5]); 
-                
-             
+
+                for (int i = 0; i < catList.size(); i++) {
+                    session.setAttribute(catList.get(i), credential.getCategories().get(i));
+                }
             } else {
                 System.out.println("fail"); //Handle here if login fails
             }

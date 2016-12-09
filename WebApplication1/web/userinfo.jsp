@@ -1,5 +1,7 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="Model.User"%>
 <jsp:useBean class="Model.User" id="curUser" scope="session"/>
+<jsp:useBean class="Model.CategoryList" id="CL" scope="session"/>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,30 +15,26 @@
         <link rel="shortcut icon" href="logo.png"/>
         <title>User Info</title>
     </head>
-    <script type="text/javascript">
-        var clicked = false;
-        function enable()
-        {
-            //document.getElementById("username").disabled = false; 
-            document.getElementById("firstname").disabled = false;
-            document.getElementById("lastname").disabled = false;
-            document.getElementById("age").disabled = false;
-            document.getElementById("email").disabled = false;
-            document.getElementById("gender").disabled = false;
-            document.getElementById("movies").disabled = false;
-            document.getElementById("sports").disabled = false;
-            document.getElementById("technology").disabled = false;
-            document.getElementById("innovative").disabled = false;
-            document.getElementById("streaming").disabled = false;
-            
-            clicked = true;
-            
-            if (clicked) {
-                <% out.println("document.getElementById(\"news\").disabled = false;"); %>
-            }
+    <%
+        out.print("<script type=\"text/javascript\">");
+        //out.print("var clicked = false");
+        out.print("function enable(){");
+        //out.print("clicked = true");
+        out.print("document.getElementById(\"firstname\").disabled = false;");
+        out.print("document.getElementById(\"lastname\").disabled = false;");
+        out.print("document.getElementById(\"age\").disabled = false;");
+        out.print("document.getElementById(\"email\").disabled = false;");
+        out.print("document.getElementById(\"gender\").disabled = false;");
+
+        ArrayList<String> list = CL.getCategories();
+        for (int i = 0; i < list.size(); i++) {
+            out.print("document.getElementById(\"" + list.get(i) + "\").disabled = false;");
         }
-     
-    </script>
+        out.print("}</script>");
+    %>
+
+
+
     <body>
         <div>
             <jsp:include page="menubar.jsp"/>
@@ -92,48 +90,21 @@
                 <!--categories checkbox --> 
                 <div style="background-color:#E5E4E2 !important;" class="jumbotron">
                     <fieldset>
-                        <div class="custom-control-input">
-                            <input id="movies" name="checkeditmovies" <%if((Boolean)session.getAttribute("movies"))out.println("checked=\"checked\"");%> type="checkbox" disabled="true">
-                            <label>
-                                Movies
-                            </label>
-                        </div>
-
-                        <div class="custom-control-input">
-                            <input id="sports" name="checkeditsports"  <%if((Boolean)session.getAttribute("sports"))out.println("checked=\"checked\"");%>type="checkbox" disabled="true">
-                            <label>
-                                Sports
-                            </label>
-                        </div>
-
-                        <div class="custom-control-input">
-                            <input id="technology" name="checkedittech" <%if((Boolean)session.getAttribute("technology"))out.println("checked=\"checked\"");%> type="checkbox" disabled="true">
-                            <label for="technology">
-                                Technology
-                            </label>
-                        </div>
-
-                        <div class="custom-control-input">
-                            <input id="news" name="checkeditnews" <%if((Boolean)session.getAttribute("news"))out.println("checked=\"checked\"");%> type="checkbox" disabled="true">
-                            <label>
-                                News
-                            </label>
-                        </div>
-
-                        <div class="custom-control-input">
-                            <input id="innovative" name="checkeditinnovative" <%if((Boolean)session.getAttribute("innovative"))out.println("checked=\"checked\"");%> type="checkbox" disabled="true">
-                            <label>
-                                Innovative
-                            </label>
-                        </div>
-
-                        <div class="custom-control-input">
-                            <input id="streaming" name="checkeditstreaming" <%if((Boolean)session.getAttribute("streaming"))out.println("checked=\"checked\"");%> type="checkbox" disabled="true">
-                            <label>
-                                Streaming
-                            </label>
-                        </div>
-
+                        <%
+                            for (int i = 0; i < list.size(); i++) {
+                                out.println("<div class=\"custom-control-input\">");
+                                out.print("\t<input id=\"" + list.get(i) + "\" ");
+                                out.print("name=\"checkedit" + list.get(i) + "\" ");
+                                if ((Boolean) session.getAttribute(list.get(i))) {
+                                    out.print("checked ");
+                                }
+                                out.println("type=\"checkbox\" disabled=\"true\"");
+                                out.println("\t<label>");
+                                out.println("\t\t" + list.get(i));
+                                out.println("\t</label>");
+                                out.println("</div>");
+                            }
+                        %>
                     </fieldset>
                 </div><!--jumbotron-->
 

@@ -50,7 +50,7 @@ public class RegisterServlet extends Forwarder {
         String username = request.getParameter("regusername");
         String password = request.getParameter("regpassword");
         String password2 = request.getParameter("regcnfmpassword");
-        
+
         String firstname = request.getParameter("regfirstname");
         String lastname = request.getParameter("reglastname");
         String email = request.getParameter("regemail");

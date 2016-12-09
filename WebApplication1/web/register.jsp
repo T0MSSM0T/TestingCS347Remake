@@ -120,10 +120,9 @@
                     <fieldset>
                         <%
                             ArrayList<String> list = CL.getCategories();
-                            for (int i = 0; i < list.size(); i++)
-                            {
+                            for (int i = 0; i < list.size(); i++) {
                                 out.print("<div class=\"custom-control-input\">");
-                                out.print("<input id=\""+ list.get(i) +"\" name=\"check" + list.get(i) + "\" type=\"checkbox\" >");
+                                out.print("<input id=\"" + list.get(i) + "\" name=\"check" + list.get(i) + "\" type=\"checkbox\" >");
                                 out.print("<label>" + list.get(i) + "</label></div>");
                             }
                         %>
