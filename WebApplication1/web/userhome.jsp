@@ -38,7 +38,8 @@
                                 int posJJ = jj + 1;
                                 out.println("<div align=\"middle\">");
                                 out.println("<p>" + posJJ + ". </p>");
-                                out.println("<p> Site: " + websites.get(jj).getSiteTitle() + "</p>");
+
+                                out.println("<p><a href=" + "\"websiteinfo.jsp\"" + "style=\"color:blue;\" >" + websites.get(jj).getSiteTitle() + "</a></p>");
                                 out.print("<iframe height=\"400\" width=\"50%\" align=\"middle\" src=\"https://" + websites.get(jj).getIFrame() + "\">" + "</iframe>");
                                 out.println("<p> Link: <a href=\"https://" + websites.get(jj).getHyperLink() + "\" style=\"color:blue;\">"
                                         + websites.get(jj).getSiteTitle() + "</a></p>");

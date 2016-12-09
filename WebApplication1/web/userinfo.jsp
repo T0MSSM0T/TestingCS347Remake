@@ -15,7 +15,6 @@
         <link rel="shortcut icon" href="logo.png"/>
         <title>User Info</title>
     </head>
-
     <%
         out.print("<script type=\"text/javascript\">");
         //out.print("var clicked = false");

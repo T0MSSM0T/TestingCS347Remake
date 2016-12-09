@@ -1,4 +1,9 @@
+<%@page import="Model.Comment"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.io.IOException"%>
+<%@page import="Model.Website"%>
+<jsp:useBean class="Model.Website" id="websiteList" scope="session"/>
+<jsp:useBean class="Model.Comment" id="commentList" scope="session"/>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,17 +34,14 @@
                 e.printStackTrace();
             }
         %>
-        
-        <!-- Page Content -->
+
         <div class="container">
             <br/><br/>
-
-            <!--FORM --> 
             <form action="websiteinfo" method="POST">
                 <div class="form-group row">
                     <label for="example-text-input" class="col-xs-2 col-form-label">Title:</label>
                     <div class="col-xs-10">
-                        <input class="form-control" name="sitetitle" type="text" id="title" readonly>
+                        <input class="form-control" value="" name="sitetitle" type="text" id="title" readonly>
                     </div>
                 </div>
 
@@ -66,22 +68,28 @@
 
                 <div class="form-group row">
                     <div class="col-xs-10">
-                        <button id="comment" name="comment" class="btn btn-primary btn-lg">Comment</button>
+                        <form action="WebsiteServlet" method="POST">
+                            <textarea class="form-control" rows="8" cols="60"></textarea>
+                            <input type="submit" value="Comment" name="comment" class="btn btn-primary btn-lg"/>
+                        </form>
+
                     </div>
                 </div>
 
+                <%
+                    ArrayList<Comment> comments = commentList.getComments();
+                    for (int ii = 0; ii < comments.size(); ii++) {
+                        int pos = ii + 1;
+                        out.println("<fieldset><legend>" + "Comment #" + pos);
+                        out.println("<p>" + comments.get(ii).getUsername());
+                        out.println("<p>" + comments.get(ii).getCommentMade() + "</p>");
+                        out.println("</legend></fieldset>");
+                    }
+                %>
             </form>   
-
-
-            <!--/.FORM -->  
-
         </div>
-        <!-- /.container -->
 
-        <!-- jQuery -->
         <script src="js/jquery.js"></script>
-
-        <!-- Bootstrap Core JavaScript -->
         <script src="js/bootstrap.js"></script>
 
     </body>
