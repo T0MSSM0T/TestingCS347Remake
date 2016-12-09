@@ -5,6 +5,8 @@
  */
 package Model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author perezcx
@@ -17,15 +19,16 @@ public class Credentials {
     private int age;
     private String email;
     private String gender;
-    public boolean categories[] = new boolean[6]; 
+    private ArrayList<Boolean> categories = new ArrayList<Boolean>();
 
-    public Credentials(String username, String firstname, String lastname, int age, String email, String gender) {
+    public Credentials(String username, String firstname, String lastname, int age, String email, String gender, ArrayList<Boolean> categories) {
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
         this.age = age;
         this.email = email;
         this.gender = gender;
+        this.categories = categories;
     }
 
     public Credentials() {
@@ -116,5 +119,21 @@ public class Credentials {
         this.gender = gender;
     }
 
- 
+    /**
+     * @return the categories
+     */
+    public ArrayList<Boolean> getCategories() {
+        return categories;
+    }
+
+    /**
+     * @param categories the categories to set
+     */
+    public void setCategories(ArrayList<Boolean> categories) {
+        this.categories = categories;
+    }
+    
+    public void addCategories(Boolean category) {
+        this.categories.add(category);
+    }
 }

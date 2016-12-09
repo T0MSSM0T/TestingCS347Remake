@@ -51,7 +51,9 @@
                             <a href="favorites.jsp" style="background-color: #00B8E6;">Favorites</a>
                         </li>
                         <li>
-                            <a href="index.jsp" style="background-color: #00B8E6;" onclick="logout()">Logout</a>
+                            <form action="LogoutServlet" method="GET">
+                                <input type="submit" style="background-color: #00B8E6;" class="btn btn-primary btn-lg btn-group-vertical" name="action" value="Logout" onclick="logout()"/>
+                            </form>
                         </li>
                     </ul>
                 </div>

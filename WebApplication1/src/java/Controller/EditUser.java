@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Model.CategoryList;
 import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -49,33 +50,33 @@ public class EditUser extends Forwarder {
         String email = request.getParameter("editemail");
         String age = request.getParameter("editage");
         String gender = request.getParameter("editgender");
-        ArrayList<Integer> categories = new ArrayList<>();
 
-        if (request.getParameter("checkeditmovies") == null) {
-            categories.add(0);
-        } else {
-            categories.add(1);
+        session.setAttribute("firstname", firstname);
+        session.setAttribute("lastname", lastname);
+        session.setAttribute("email", email);
+        session.setAttribute("age", age);
+        session.setAttribute("gender", gender);
+
+        CategoryList obj = new CategoryList();
+        ArrayList<String> catList = new ArrayList<String>();
+
+        ArrayList<Integer> categories = new ArrayList<Integer>();
+        try {
+            catList = obj.getCategories();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        if (request.getParameter("checkeditsports") == null) {
-            categories.add(0);
-        } else {
-            categories.add(1);
+
+        for (int i = 0; i < catList.size(); i++) {
+            if (request.getParameter("checkedit" + catList.get(i)) == null) {
+                categories.add(0);
+                session.setAttribute(catList.get(i), false);
+            } else {
+                categories.add(1);
+                session.setAttribute(catList.get(i), true);
+            }
         }
-        if (request.getParameter("checkedittech") == null) {
-            categories.add(0);
-        } else {
-            categories.add(1);
-        }
-        if (request.getParameter("checkeditnews") == null) {
-            categories.add(0);
-        } else {
-            categories.add(1);
-        }
-        if (request.getParameter("checkeditstreaming") == null) {
-            categories.add(0);
-        } else {
-            categories.add(1);
-        }
+
         User edituser = new User(username, firstname, lastname, email, age, gender, categories);
         try {
             edituser.editRegister();
@@ -83,10 +84,6 @@ public class EditUser extends Forwarder {
             Logger.getLogger(EditUser.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        /*
-        for (Integer category : categories) {
-            System.out.println(category);
-        }*/
         forwardTo(nextView, request, response);
     }
 

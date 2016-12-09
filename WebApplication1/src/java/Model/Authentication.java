@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,31 +36,22 @@ public class Authentication extends Database {
     }
 
     public boolean authenticate() throws SQLException {
+        String hash = encodePassword(password);
+
         Connection conection = getConnection();
-        String query = "SELECT * FROM UserTable ";
+        String query = "SELECT * FROM UserTable WHERE Username = '" + username + "' AND Password = '" + hash + "'";
         Statement st = conection.createStatement();
         result = st.executeQuery(query);
-        String hash = encodePassword(password); 
-        
-        while (result.next()) {
-            if (username.equals(result.getString("Username")) && hash.equals(result.getString("Password"))) {
-                categoryid = result.getInt("FavoriteCategoryIDLink");
-                return true;
-            }
+
+        if (result.first()) {
+            categoryid = result.getInt("FavoriteCategoryIDLink");
+            return true;
         }
 
         return false;
-
     }
 
     public Credentials getCredentials() throws SQLException {
-        /**
-         * Connection conection = getConnection(); Statement st =
-         * conection.createStatement(); ResultSet result; String query = "SELECT
-         * * FROM UserTable WHERE UserID = "+pk; result =
-         * st.executeQuery(query);
-         *
-         */
         Credentials credential = new Credentials();
 
         credential.setUsername(result.getString("Username"));
@@ -68,35 +60,27 @@ public class Authentication extends Database {
         credential.setAge(result.getInt("Age"));
         credential.setEmail(result.getString("Email"));
         credential.setGender(result.getString("Gender"));
-        
-         getCategories(credential); 
 
-        return credential;
-    }
-    public void getCategories(Credentials credential) throws SQLException {
-          
+        CategoryList obj = new CategoryList();
+        ArrayList<String> catList = obj.getCategories();
         Connection conection = getConnection();
-        String query = "SELECT * FROM UsersFavoriteTable WHERE UsernameCategoryID ="+categoryid;
+        String query = "SELECT * FROM UsersFavoriteTable WHERE UsernameCategoryID =" + categoryid;
         Statement st;
-     
-            st = conection.createStatement();
-            result = st.executeQuery(query);
-      
-        while (result.next()) {
 
-            try {
-                
-                credential.categories[0] = result.getInt("Movies")==1?true:false; 
-                credential.categories[1] = result.getInt("Sports")==1?true:false;
-                credential.categories[2] = result.getInt("Technology")==1?true:false;
-                credential.categories[3] = result.getInt("News")==1?true:false;
-                credential.categories[4] = result.getInt("Innovative")==1?true:false;
-                credential.categories[5] = result.getInt("Streaming")==1?true:false;
-           
-            } catch (SQLException ex) {
-                System.out.println("error en getInt"); 
+        st = conection.createStatement();
+        result = st.executeQuery(query);
+
+        result.next();
+
+        for (int i = 0; i < catList.size(); i++) {
+            if (result.getInt(catList.get(i)) == 1) {
+                credential.addCategories(true);
+            } else {
+                credential.addCategories(false);
             }
         }
+
+        return credential;
     }
 
     private static String encodePassword(String password) {

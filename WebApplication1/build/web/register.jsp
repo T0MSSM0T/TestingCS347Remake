@@ -35,17 +35,17 @@
 
                 function validatePassword()
                 {
-                    var match = true
-                    var password = get('password').value
-                    var passwordConfirm = get('passwordcnfm').value
-                    get('passwordcnfmerr').innerHTML = ''
+                var match = true
+                var password = get('password').value
+                var passwordConfirm = get('passwordcnfm').value
+                get('passwordcnfmerr').innerHTML = ''
 
-                    if (password != passwordConfirm){
-                        get('passwordcnfmerr').innerHTML = 'Passwords do not match'
-                        match = false
-                    }
+                if (password != passwordConfirm){
+                get('passwordcnfmerr').innerHTML = 'Passwords do not match'
+                match = false
+                }
 
-                    return match
+                return match
                 }
 
                 function get(id) { return document.getElementById(id) }

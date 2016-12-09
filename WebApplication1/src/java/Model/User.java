@@ -33,23 +33,24 @@ public class User extends Database {
     public User() {
 
     }
-    
-    public User(String username, String firstname, String lastname, String email, String age, String gender, ArrayList<Integer> favs){
+
+    public User(String username, String firstname, String lastname, String email, String age, String gender, ArrayList<Integer> favs) {
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
-        this.age = parseInt(age);
+        this.age = Integer.parseInt(age);
         this.email = email;
         this.gender = gender;
         this.favsC = favs;
     }
+
     public User(String username, String password, String password2, String firstname, String lastname, String email, String age, String gender, ArrayList<Integer> favs) {
         this.username = username;
         this.password = password;
         this.password2 = password2;
         this.firstname = firstname;
         this.lastname = lastname;
-        this.age = parseInt(age);
+        this.age = Integer.parseInt(age);
         this.email = email;
         this.gender = gender;
         this.favsC = favs;
@@ -126,51 +127,59 @@ public class User extends Database {
     public void setGender(String gender) {
         this.gender = gender;
     }
+
     public void editRegister() throws SQLException {
         Connection con = getConnection();
-        String selectrow = "UPDATE UserTable SET Email = '"+email+"', FirstName = '"+firstname+"',LastName = '"+lastname+"',Age = '"+age+"',Gender = '"+gender+"' WHERE Username = '"+username+"'"; 
-        PreparedStatement sts1 = con.prepareStatement(selectrow);
-        sts1.executeUpdate();  //(selectrow);
-        
-     
-     
+        String selectrow = "UPDATE UserTable SET Email = ? , FirstName = ? , LastName = ? ,Age = ? , Gender = ? WHERE Username = '" + username + "'";
+        String query = "SELECT * FROM UserTable WHERE Username = '" + username + "'";
+        Statement sts1 = con.createStatement();
+        ResultSet result;
+        result = sts1.executeQuery(query);
+        result.next();
+        int favId = result.getInt("FavoriteCategoryIDLink");
+        PreparedStatement sts2 = con.prepareStatement(selectrow);
+        sts2.setString(1, email);
+        sts2.setString(2, firstname);
+        sts2.setString(3, lastname);
+        sts2.setInt(4, age);
+        sts2.setString(5, gender);
+        sts2.executeUpdate();  //(selectrow);
+
+        CategoryList obj = new CategoryList();
+        ArrayList<String> catList = obj.getCategories();
+        String sql = "UPDATE UsersFavoriteTable SET";
+
+        for (int i = 0; i < catList.size(); i++) {
+            sql += " " + catList.get(i) + " = " + favsC.get(i) + ",";
+        }
+        sql = sql.substring(0, sql.length() - 1);
+        sql += " WHERE UsernameCategoryID = " + favId;
+
+        Statement sts3 = con.createStatement();
+        System.out.print(sql);
+        sts3.executeUpdate(sql);
     }
+
     public void insertRegister() throws SQLException {
         Connection co = getConnection();
-        
+
         String countQ = "SELECT COUNT(*) FROM UserTable";
         Statement q = co.createStatement();
         ResultSet res = q.executeQuery(countQ);
         res.next();
-        int rows = res.getInt("COUNT(*)") + 1;//PRIMARY KEY IN UsersFavorityTable
-        System.out.println("Rows=="+rows); 
+        int rows = res.getInt("COUNT(*)") + 1;
         String sql1 = "INSERT INTO UserTable VALUES(?,?,?,?,?,?,?,?,?,?)";
-        /**
-        String sql2 = "INSERT INTO UsersFavoriteTable VALUES(" + rows + ",";
-        for (int i = 0; i < favsC.size(); i++)
-        {
-            sql2 += favsC.get(i) + ",";
+
+        String sql2 = "INSERT INTO UsersFavoriteTable VALUES(" + rows;
+        for (int i = 0; i < favsC.size(); i++) {
+            sql2 += "," + favsC.get(i);
         }
-        sql2 = sql2.substring(0, sql2.length()-1);
         sql2 += ")";
-        //sql2 += favsC.get(favsC.size()-1) + ")";
         Statement sts2 = co.createStatement();
         sts2.executeUpdate(sql2);
-        **/
-        
-        //ROWS IS THE PRIMARY KEY IN THE UsersFavorityTable AND THE LINK IN THE
-        //FavoriteCategoryIDLink
-        String sql2 = "INSERT INTO UsersFavoriteTable VALUES(" + rows ;
-        for (Integer cat : favsC) {
-            sql2 += ","+cat; 
-        }
-        sql2 += ")"; 
-        Statement sts2 = co.createStatement(); 
-        sts2.execute(sql2); //INSERTING CATEGORIES IN UsersFavoriteTable
-        
-        
+
         PreparedStatement sts1 = co.prepareStatement(sql1);
-        
+
         sts1.setInt(1, rows);//Quesry database to get last id + 1
         sts1.setInt(2, rows);
         sts1.setString(3, username);
@@ -182,18 +191,6 @@ public class User extends Database {
         sts1.setString(9, gender);
         sts1.setString(10, ROLE);
         sts1.executeUpdate();
-   
-    }
 
-    private int parseInt(String name) {
-        try {
-            return Integer.parseInt(name);
-        } catch (NumberFormatException exc) {
-            //Quick-fix to make the query have a default year.
-            System.out.println("unable to parse");
-        }
-        return 0;
     }
-
-    
 }

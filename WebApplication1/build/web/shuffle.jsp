@@ -3,7 +3,7 @@
     Created on : Dec 2, 2016, 1:59:51 PM
     Author     : hirstrb
 --%>
-
+<%@page import="java.io.IOException"%>
 <%@page import="Model.Website"%>
 <%@page import="java.util.Random"%>
 <%@page import="java.util.ArrayList"%>
@@ -26,26 +26,37 @@
         <div>
             <jsp:include page="menubar.jsp"/>
         </div>
-        
+
 
         <div class="shuffle-style">
             <%
-                Random rand = new Random();
-                ArrayList<Website> sites = websiteList.getWebsites();
-                Integer randomInt = rand.nextInt(sites.size());
-                Website chosen = sites.get(randomInt);
-                out.print("<iframe height=\"600\" width=\"100%\" align=\"middle\" src=\"https://" + chosen.getIFrame() + "\">" + "</iframe>");
-                out.print("<label style=\"padding-top: 1%;\">Random Int:</label>" + " " + randomInt);
-                out.print("<hr>");
-                out.print("<label>Website:</label>" + " " + chosen.getSiteTitle());
-                out.print("<hr>");
-                out.print("<label>Ad Count:</label>" + " " + chosen.getAdCount());
-                out.print("<hr>");
-                out.print("<label>Rating:</label>" + " " + chosen.getRating());    
-                out.print("<hr>");
-                out.print("<label>Category:</label>" + " " + chosen.getCategoryIDLink());
-                out.print("<hr>");
-                out.print("<label style=\"padding-bottom: 3%;\">Link:</label>" + " " + "<a href=\"http://"+ chosen.getHyperLink() + "\"style=\"color: blue;\">" + chosen.getSiteTitle() + "</a>");
+                try {
+                    Boolean loggedIn = (Boolean) session.getAttribute("logged_in");
+                    if (loggedIn == null || !loggedIn) {
+                        response.sendRedirect(request.getContextPath());   // go to the home page
+                    } else {
+                        Random rand = new Random();
+                        ArrayList<Website> sites = websiteList.getWebsites();
+                        Integer randomInt = rand.nextInt(sites.size());
+                        Website chosen = sites.get(randomInt);
+                        out.print("<iframe height=\"600\" width=\"100%\" align=\"middle\" src=\"https://" + chosen.getIFrame() + "\">" + "</iframe>");
+                        out.print("<label style=\"padding-top: 1%;\">Random Int:</label>" + " " + randomInt);
+                        out.print("<hr>");
+                        out.print("<label>Website:</label>" + " " + chosen.getSiteTitle());
+                        out.print("<hr>");
+                        out.print("<label>Ad Count:</label>" + " " + chosen.getAdCount());
+                        out.print("<hr>");
+                        out.print("<label>Rating:</label>" + " " + chosen.getRating());
+                        out.print("<hr>");
+                        out.print("<label>Category:</label>" + " " + chosen.getCategoryIDLink());
+                        out.print("<hr>");
+                        out.print("<label style=\"padding-bottom: 3%;\">Link:</label>" + " " + "<a href=\"http://" + chosen.getHyperLink() + "\"style=\"color: blue;\">" + chosen.getSiteTitle() + "</a>");
+                    }
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+
             %>
         </div>
     </body>
