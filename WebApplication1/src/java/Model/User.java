@@ -160,7 +160,7 @@ public class User extends Database {
         sts3.executeUpdate(sql);
     }
 
-    public void insertRegister() throws SQLException {
+    public boolean insertRegister() throws SQLException {
         int count = 0;
         
         Connection co = getConnection();
@@ -180,9 +180,9 @@ public class User extends Database {
             count++;
         }
         
-        if(count != 1)
+        if(count == 1)
         {
-            return;
+            return false;
         }
         
         String sql1 = "INSERT INTO UserTable VALUES(?,?,?,?,?,?,?,?,?,?)";
@@ -208,6 +208,6 @@ public class User extends Database {
         sts1.setString(9, gender);
         sts1.setString(10, ROLE);
         sts1.executeUpdate();
-
+        return true;
     }
 }

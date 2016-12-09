@@ -75,7 +75,10 @@ public class RegisterServlet extends Forwarder {
         String hash = encodePassword(password);
         User register = new User(username, hash, hash, firstname, lastname, email, age, gender, fav);
         try {
-            register.insertRegister();
+            if(!register.insertRegister())
+            {
+                nextView = "/usernameerror.html";
+            }
         } catch (SQLException ex) {
             Logger.getLogger(EmailServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
