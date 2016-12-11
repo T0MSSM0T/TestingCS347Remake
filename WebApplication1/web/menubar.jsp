@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<!-- Menu bar to be used after the user logged it --> 
 <html>
     <head>
         <!-- Bootstrap Core CSS -->

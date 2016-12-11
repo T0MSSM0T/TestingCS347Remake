@@ -30,7 +30,8 @@
         <!-- Page Content -->
         <div class="container">
             <br/><br/>
-
+            <!-- Confirms that passwords match. It will not proceed if passwords
+            don't match --> 
             <script type="text/JavaScript">
 
                 function validatePassword()
@@ -119,6 +120,9 @@
                 <div style="background-color:#E5E4E2 !important;" class="jumbotron">
                     <fieldset>
                         <%
+                            /**
+                             * Displays the different categories 
+                             */
                             ArrayList<String> list = CL.getCategories();
                             for (int i = 0; i < list.size(); i++) {
                                 out.print("<div class=\"custom-control-input\">");

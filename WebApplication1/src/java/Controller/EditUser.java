@@ -28,8 +28,9 @@ import javax.servlet.http.HttpSession;
 public class EditUser extends Forwarder {
 
     /**
-     * Handles the HTTP <code>POST</code> method.
-     *
+     * Gets attributes from userinfo.jsp and updates the table with the new
+     * information 
+     * Edit the categories associated withe the user 
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs

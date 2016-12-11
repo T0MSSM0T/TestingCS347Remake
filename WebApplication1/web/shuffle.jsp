@@ -30,6 +30,9 @@
 
         <div class="shuffle-style">
             <%
+                /**
+                 * Displays a random website
+                 */
                 try {
                     Boolean loggedIn = (Boolean) session.getAttribute("logged_in");
                     if (loggedIn == null || !loggedIn) {

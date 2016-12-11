@@ -16,6 +16,9 @@
         <title>User Info</title>
     </head>
     <%
+        /**
+         * Enables the editing feature
+         */
         out.print("<script type=\"text/javascript\">");
         //out.print("var clicked = false");
         out.print("function enable(){");
@@ -91,6 +94,7 @@
                 <div style="background-color:#E5E4E2 !important;" class="jumbotron">
                     <fieldset>
                         <%
+                    
                             for (int i = 0; i < list.size(); i++) {
                                 out.println("<div class=\"custom-control-input\">");
                                 out.print("\t<input id=\"" + list.get(i) + "\" ");

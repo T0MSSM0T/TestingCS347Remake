@@ -16,11 +16,7 @@
         <title>Favorites</title>
 
     </head>
-    <script type="text/javascript">
-            function getsite() {
-                
-            }
-        </script>
+  
     <body>
         <div>
             <jsp:include page="menubar.jsp"/> 
@@ -28,6 +24,9 @@
         </div>
        
         <%
+        /**
+         * Displays websites retrived from database based on the user's favorite categories
+         */
             try {
                 Boolean loggedIn = (Boolean) session.getAttribute("logged_in");
                 if (loggedIn == null || !loggedIn) {

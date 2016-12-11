@@ -22,6 +22,10 @@ public class Database {
 
     public Connection con;
 
+    /**
+     * Creates connection 
+     * @return connection object
+     */
     public Connection getConnection() {
 
         try {
@@ -34,19 +38,5 @@ public class Database {
         }
         return con;
     }
-
-    public void RgisterUserFunction() throws SQLException {
-        Connection co = getConnection();
-        String sql = "INSERT INTO CategoryTable VALUES(?,?,?)";
-        PreparedStatement sts = co.prepareStatement(sql);
-        int id = 2;
-        String cat = "sports";
-        String note = "testing";
-
-        sts.setInt(1, id);
-        sts.setString(2, cat);
-        sts.setString(3, note);
-
-        sts.executeUpdate();
-    }
+ 
 }

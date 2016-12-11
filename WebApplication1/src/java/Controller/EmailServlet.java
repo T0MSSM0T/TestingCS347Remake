@@ -24,8 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 public class EmailServlet extends Forwarder {
 
     /**
-     * Handle an HTTP POST transaction for a drop or add.
-     *
+     * Handles forgotpassoword.jsp and recover the password based on email 
      * @param request The HTTP request object
      * @param response The HTTP response object
      */

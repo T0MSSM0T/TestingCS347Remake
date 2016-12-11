@@ -24,7 +24,7 @@ public class WebsiteServlet  extends Forwarder  {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>GET</code> method.
+     * Gets the particular web site information and forward it to websiteinfo.jsp
      *
      * @param request servlet request
      * @param response servlet response

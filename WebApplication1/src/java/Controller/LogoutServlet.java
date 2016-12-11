@@ -14,8 +14,7 @@ import javax.servlet.http.HttpSession;
 
 
 /**
- *
- * @author hirstrb
+ * Logs out the user and terminates the session 
  */
 @WebServlet(name = "LogoutServlet", urlPatterns = {"/LogoutServlet"})
 public class LogoutServlet extends Forwarder {
