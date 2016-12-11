@@ -77,7 +77,7 @@ public class RegisterServlet extends Forwarder {
         try {
             if(!register.insertRegister())
             {
-                nextView = "/usernameerror.html";
+                nextView = "/usernameerror.jsp";
             }
         } catch (SQLException ex) {
             Logger.getLogger(EmailServlet.class.getName()).log(Level.SEVERE, null, ex);
