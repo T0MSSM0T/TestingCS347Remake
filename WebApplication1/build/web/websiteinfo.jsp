@@ -57,7 +57,7 @@
                 <div class="form-group row">
                     <label for="example-email-input" class="col-xs-2 col-form-label">Info:</label>
                     <div class="col-xs-10">
-                        <input class="form-control" name="siteinfo" type="text" id="info" readonly>
+                        <input class="form-control" value="<%=session.getAttribute("websitenotes")%>" name="siteinfo" type="text" id="info" readonly>
                     </div>
                 </div>
 
