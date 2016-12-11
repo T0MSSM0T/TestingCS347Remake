@@ -29,7 +29,9 @@ public class CommentServlet extends Forwarder {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-            
+        
+
+        /**
         String nextView = "/websiteinfo.jsp";
         Website site = (Website) session.getAttribute("website"); 
         session.setAttribute("websitetitle",site.getSiteTitle());
@@ -37,9 +39,9 @@ public class CommentServlet extends Forwarder {
         //session.setAttribute("websitetitle",site.);get info idk
         session.setAttribute("websiterating",site.getRating());
         session.setAttribute("siteid", site.getSiteID());
-     
+        **/
              
-          forwardTo(nextView, request, response);
+         // forwardTo(nextView, request, response);
     }
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -54,21 +56,22 @@ public class CommentServlet extends Forwarder {
             throws ServletException, IOException {
         //response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-
+        
+        
         String nextView = "/websiteinfo.jsp";
         
         int commentID = 1;
         int siteID = 2;
         
         String username = (String) session.getAttribute("username");
-        System.out.println("username=="+username); 
+      
         String comMade = request.getParameter("commentText");
         Date date = new Date();
         
         Comment comment = new Comment(commentID, siteID, username, comMade, date);
         try {
             comment.insertComment();
-        } catch (SQLException ex) {
+        } catch (SQLException ex) { 
             Logger.getLogger(CommentServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         

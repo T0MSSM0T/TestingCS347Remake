@@ -16,12 +16,17 @@
         <title>Favorites</title>
 
     </head>
-
+    <script type="text/javascript">
+            function getsite() {
+                
+            }
+        </script>
     <body>
         <div>
             <jsp:include page="menubar.jsp"/> 
+           
         </div>
-
+       
         <%
             try {
                 Boolean loggedIn = (Boolean) session.getAttribute("logged_in");
@@ -39,7 +44,7 @@
 
                             for (int jj = 0; jj < websites.size(); jj++) {
                                 int posJJ = jj + 1;
-                                out.println("<form action=\"CommentServlet\" method=\"POST\">"); 
+                                //out.println("<form action=\"CommentServlet\" method=\"POST\">"); 
                                 out.println("<div align=\"middle\">");
                                 out.println("<p>" + posJJ + ". </p>");
                                 out.println("<p> Site: " + websites.get(jj).getSiteTitle() + "</p>");
@@ -51,8 +56,10 @@
                                 
                                 //session.setAttribute(websites.get(jj).getSiteTitle(), websites.get(jj));
                                 session.setAttribute(jj+"",websites.get(jj));
-                                out.println("<form>");
-                                out.println("<button type=\"submit\">Info</button> ");
+                                //out.println("<form>");
+                                 out.println("<a href=\"WebsiteServlet?title="+websites.get(jj).getSiteTitle()+
+                                         "&link="+websites.get(jj).getHyperLink()+"&rating="+websites.get(jj).getRating()+"&id="+websites.get(jj).getSiteID()+"  \"><button>infosiete</button></a>"); 
+                                //out.println("<button type=\"submit\" onClick=\"getsite()\">Info</button> ");
                             }
                         }
                     }
