@@ -13,13 +13,18 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
- *
+ * Category List  
  * @author schieftg
  */
 public class CategoryList extends Database {
 
     static boolean first = true;
 
+    /**
+     * Retrives Category table places it in an ArrayList 
+     * @return ArrayList with Category table
+     * @throws SQLException unable to perform query 
+     */
     public ArrayList<String> getCategories() throws SQLException {
         ArrayList<String> categories = new ArrayList<String>();
 

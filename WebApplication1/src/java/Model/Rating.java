@@ -87,7 +87,7 @@ public class Rating extends Database {
 
     public ArrayList<Rating> getRatingsBySite(int id) throws SQLException {
         Connection co = getConnection();
-        String sql = "SELECT * FROM RatingsTable WHERE SiteID=" + "\"" + id + "\"";
+        String sql = "SELECT * FROM RatingsTable WHERE SiteID=" +id;  
         ArrayList<Rating> siteRatings = new ArrayList<Rating>();
 
         Statement st = co.createStatement();

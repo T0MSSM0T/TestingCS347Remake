@@ -49,7 +49,7 @@ public class WebsiteServlet  extends Forwarder  {
         session.setAttribute("websitelink",link);
         session.setAttribute("websitenotes",notes);
         session.setAttribute("websiterating",rating);
-        session.setAttribute("siteid", rating);
+        session.setAttribute("siteid", id);
        
         
         forwardTo(nextView, request, response);

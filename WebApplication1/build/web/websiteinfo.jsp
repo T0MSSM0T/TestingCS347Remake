@@ -77,24 +77,28 @@
 
                     </div>
                 </div>
-
+                  
+                    
                 <%
                     // ratings 
-                    ArrayList<Rating> ratings = ratingList.getRatings();
+                 System.out.println(session.getAttribute("siteid"));
+                    ArrayList<Rating> ratings = ratingList.getRatingsBySite((int)session.getAttribute("siteid"));
+                    
                     for (int ii = 0; ii < ratings.size(); ii++) {
                         int pos = ii + 1;
                         out.println("<fieldset><legend>" + "Rating #" + pos);
-                        out.println("<p>" + ratings.get(ii).getUsername());
+                        out.println("<p>" + ratings.get(ii).getUsername()+"</p>");
                         out.println("<p>" + ratings.get(ii).getRating() + "</p>");
                         out.println("</legend></fieldset>");
                     }
-
+                %>   
+                <%
                     // comments 
                     ArrayList<Comment> comments = commentList.getCommentsBySite((int) session.getAttribute("siteid"));
                     for (int ii = 0; ii < comments.size(); ii++) {
                         int pos = ii + 1;
-                        out.println("<fieldset><legend>" + "Comment #" + pos);
-                        out.println("<p>" + comments.get(ii).getUsername());
+                        out.println("<fieldset><legend>" +  "Comment #" + pos);
+                        out.println("<p>" + comments.get(ii).getUsername()+"</p>");
                         out.println("<p>" + comments.get(ii).getCommentMade() + "</p>");
                         out.println("</legend></fieldset>");
                     }
