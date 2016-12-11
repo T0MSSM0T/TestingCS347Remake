@@ -8,17 +8,15 @@
 <jsp:useBean class="Model.Rating" id="ratingList" scope="session"/>
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
-
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
+        <title>Website Info</title>
 
         <link rel="shortcut icon" href="logo.png"/>
-        <title>Website Info</title>
     </head>
 
     <body>
@@ -61,34 +59,38 @@
                     </div>
                 </div>
 
+                <!--
+                   rating bar 
+                -->
                 <div class="form-group row">
-                    <label for="example-url-input" class="col-xs-2 col-form-label">Rating:</label>
                     <div class="col-xs-10">
-                        <input class="form-control" value="<%=session.getAttribute("websiterating")%>" name="siterating" type="text" id="rating" readonly>
+                        <div>
+                            <jsp:include page="ratingBar.jsp"/>
+
+                            <form action="RatingServlet" method="POST">
+                                <select name="starRating" >
+                                    <option value="1">1 Stars</option>
+                                    <option value="2">2 Stars</option>
+                                    <option value="3">3 Stars</option>
+                                    <option value="4">4 Stars</option>
+                                    <option value="5">5 Stars</option>
+                                </select> 
+                                <input type="submit" name="action" value="Rate" class="btn btn-primary btn-lg btn-block" />
+                            </form>
+                        </div>
                     </div>
-                </div>    
+                </div>
 
                 <div class="form-group row">
                     <div class="col-xs-10">
                         <form action="CommentServlet" method="GET">
-                            <textarea class="form-control" rows="8" cols="60" name ="commentText"></textarea>
+                            <textarea class="form-control" rows="8" cols="40" name ="commentText"></textarea>
                             <input type="submit" value="Comment" name="action" class="btn btn-primary btn-lg btn-block"/>
                         </form>
-
                     </div>
                 </div>
 
                 <%
-                    // ratings 
-                    ArrayList<Rating> ratings = ratingList.getRatings();
-                    for (int ii = 0; ii < ratings.size(); ii++) {
-                        int pos = ii + 1;
-                        out.println("<fieldset><legend>" + "Rating #" + pos);
-                        out.println("<p>" + ratings.get(ii).getUsername());
-                        out.println("<p>" + ratings.get(ii).getRating() + "</p>");
-                        out.println("</legend></fieldset>");
-                    }
-
                     // comments 
                     ArrayList<Comment> comments = commentList.getCommentsBySite((int) session.getAttribute("siteid"));
                     for (int ii = 0; ii < comments.size(); ii++) {

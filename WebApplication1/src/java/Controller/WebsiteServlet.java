@@ -42,16 +42,13 @@ public class WebsiteServlet  extends Forwarder  {
         int rating = Integer.parseInt(request.getParameter("rating")); 
         int id = Integer.parseInt(request.getParameter("id")); 
         String notes = request.getParameter("notes"); 
-  
-        
-       
+         
         session.setAttribute("websitetitle",title);
         session.setAttribute("websitelink",link);
         session.setAttribute("websitenotes",notes);
         session.setAttribute("websiterating",rating);
-        session.setAttribute("siteid", rating);
-       
-        
+        session.setAttribute("siteid", id);
+
         forwardTo(nextView, request, response);
     }
 
