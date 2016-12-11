@@ -57,8 +57,10 @@
                                 //session.setAttribute(websites.get(jj).getSiteTitle(), websites.get(jj));
                                 session.setAttribute(jj+"",websites.get(jj));
                                 //out.println("<form>");
-                                 out.println("<a href=\"WebsiteServlet?title="+websites.get(jj).getSiteTitle()+
-                                         "&link="+websites.get(jj).getHyperLink()+"&rating="+websites.get(jj).getRating()+"&id="+websites.get(jj).getSiteID()+"  \"><button>infosiete</button></a>"); 
+                                 out.println("<a href=\"WebsiteServlet?title="+websites.get(jj).getSiteTitle()
+                                         + "&link="+websites.get(jj).getHyperLink()+"&rating="+websites.get(jj).getRating()+""
+                                         + "&id="+websites.get(jj).getSiteID()+"&notes="+websites.get(jj).getNotes()+""
+                                         + "  \"><button class = \"btn btn-primary btn-lg active\">Info Site</button></a>"); 
                                 //out.println("<button type=\"submit\" onClick=\"getsite()\">Info</button> ");
                             }
                         }

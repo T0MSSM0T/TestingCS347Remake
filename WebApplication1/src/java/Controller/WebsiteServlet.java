@@ -41,17 +41,13 @@ public class WebsiteServlet  extends Forwarder  {
         String link = request.getParameter("link"); 
         int rating = Integer.parseInt(request.getParameter("rating")); 
         int id = Integer.parseInt(request.getParameter("id")); 
-        
-        System.out.println("title==="+title); 
-        System.out.println("link==="+link); 
-        System.out.println("rating==="+rating); 
-        System.out.println("id==="+id); 
-        
+        String notes = request.getParameter("notes"); 
+  
         
        
         session.setAttribute("websitetitle",title);
         session.setAttribute("websitelink",link);
-        //session.setAttribute("websitetitle",site.);get info idk
+        session.setAttribute("websitenotes",notes);
         session.setAttribute("websiterating",rating);
         session.setAttribute("siteid", rating);
        

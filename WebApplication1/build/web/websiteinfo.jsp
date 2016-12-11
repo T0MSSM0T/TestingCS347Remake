@@ -1,9 +1,11 @@
+<%@page import="Model.Rating"%>
 <%@page import="Model.Comment"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.io.IOException"%>
 <%@page import="Model.Website"%>
 <jsp:useBean class="Model.Website" id="websiteList" scope="session"/>
 <jsp:useBean class="Model.Comment" id="commentList" scope="session"/>
+<jsp:useBean class="Model.Rating" id="ratingList" scope="session"/>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,7 +57,7 @@
                 <div class="form-group row">
                     <label for="example-email-input" class="col-xs-2 col-form-label">Info:</label>
                     <div class="col-xs-10">
-                        <input class="form-control" name="siteinfo" type="text" id="info" readonly>
+                        <input class="form-control" value="<%=session.getAttribute("websitenotes")%>" name="siteinfo" type="text" id="info" readonly>
                     </div>
                 </div>
 
@@ -77,6 +79,17 @@
                 </div>
 
                 <%
+                    // ratings 
+                    ArrayList<Rating> ratings = ratingList.getRatings();
+                    for (int ii = 0; ii < ratings.size(); ii++) {
+                        int pos = ii + 1;
+                        out.println("<fieldset><legend>" + "Rating #" + pos);
+                        out.println("<p>" + ratings.get(ii).getUsername());
+                        out.println("<p>" + ratings.get(ii).getRating() + "</p>");
+                        out.println("</legend></fieldset>");
+                    }
+
+                    // comments 
                     ArrayList<Comment> comments = commentList.getCommentsBySite((int) session.getAttribute("siteid"));
                     for (int ii = 0; ii < comments.size(); ii++) {
                         int pos = ii + 1;
