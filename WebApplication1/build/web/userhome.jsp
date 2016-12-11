@@ -23,6 +23,9 @@
 
         <ul>
             <%
+                /**
+                 * Displays websites based on the user's favorite categories 
+                 */
                 try {
                     Boolean loggedIn = (Boolean) session.getAttribute("logged_in");
                     if (loggedIn == null || !loggedIn) {

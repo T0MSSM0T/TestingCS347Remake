@@ -16,13 +16,20 @@ public class GMailAuthenticator extends Authenticator {
 
     String user;
     String pw;
-
+    /**
+     * Set username and password 
+     * @param username
+     * @param password 
+     */
     public GMailAuthenticator(String username, String password) {
         super();
         this.user = username;
         this.pw = password;
     }
-
+    /**
+     * 
+     * @return PasswordAuthentication 
+     */
     public PasswordAuthentication getPasswordAuthentication() {
         return new PasswordAuthentication(user, pw);
     }

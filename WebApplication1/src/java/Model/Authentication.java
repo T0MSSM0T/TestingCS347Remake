@@ -30,11 +30,20 @@ public class Authentication extends Database {
     int categoryid;
     ResultSet result;
 
+    /**
+     * Default Constructor 
+     * @param username username to be authenticated 
+     * @param password password to be authenticated 
+     */
     public Authentication(String username, String password) {
         this.username = username;
         this.password = password;
     }
-
+    /**
+     * Authenticate user based on username and password
+     * @return true if username matches password
+     * @throws SQLException unable to perform query
+     */
     public boolean authenticate() throws SQLException {
         String hash = encodePassword(password);
 
@@ -50,7 +59,11 @@ public class Authentication extends Database {
 
         return false;
     }
-
+    /**
+     * Get credentials based on the category id 
+     * @return Credentials object
+     * @throws SQLException unable to perform query
+     */
     public Credentials getCredentials() throws SQLException {
         Credentials credential = new Credentials();
 
@@ -82,7 +95,11 @@ public class Authentication extends Database {
 
         return credential;
     }
-
+    /**
+     * Hash password 
+     * @param password un-hashed password 
+     * @return hashed password
+     */
     private static String encodePassword(String password) {
         try {
             byte[] bytes = password.getBytes("UTF-8");

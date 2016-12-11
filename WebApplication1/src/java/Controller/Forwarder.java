@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author schieftg
+ * Forwards to the new page
+ * @author perezcx
  */
 public class Forwarder extends HttpServlet {
 

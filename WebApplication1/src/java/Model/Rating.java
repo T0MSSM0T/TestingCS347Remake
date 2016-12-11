@@ -27,46 +27,73 @@ public class Rating extends Database {
     public Rating() {
 
     }
-
+    /**
+     * 
+     * @param ratingID
+     * @param siteID
+     * @param username
+     * @param rating 
+     */
     public Rating(int ratingID, int siteID, String username, int rating) {
         this.ratingID = ratingID;
         this.siteID = siteID;
         this.username = username;
         this.rating = rating;
     }
-
+    /**
+     * 
+     * @return ratingID
+     */
     public int getRatingID() {
         return ratingID;
     }
-
+    /**
+     * @param ratingID 
+     */
     public void setRatingID(int ratingID) {
         this.ratingID = ratingID;
     }
-
+    /**
+     * @return siteID 
+     */
     public int getSiteID() {
         return siteID;
     }
-
+    /**
+     * @param siteID 
+     */
     public void setSiteID(int siteID) {
         this.siteID = siteID;
     }
-
+    /**
+     * @return username
+     */
     public String getUsername() {
         return username;
     }
-
+    /**
+     * @param username 
+     */
     public void setUsername(String username) {
         this.username = username;
     }
-
+    /**
+     * @return rating
+     */
     public int getRating() {
         return rating;
     }
-
+    /**
+     * @param rating 
+     */
     public void setRating(int rating) {
         this.rating = rating;
     }
-
+    /**
+     * Gets ratings from Ratings Table 
+     * @return ArrayList with Rating 
+     * @throws SQLException 
+     */
     public ArrayList<Rating> getRatings() throws SQLException {
         Connection co = getConnection();
         String sql = "SELECT * FROM RatingsTable";
@@ -85,7 +112,12 @@ public class Rating extends Database {
         }
         return ratings;
     }
-
+    /**
+     * Gets Ratings by Site Id
+     * @param id
+     * @return ArrayList with ratings based on id 
+     * @throws SQLException 
+     */
     public ArrayList<Rating> getRatingsBySite(int id) throws SQLException {
         Connection co = getConnection();
         String sql = "SELECT * FROM RatingsTable WHERE SiteID=" + id;

@@ -6,9 +6,19 @@
 package Controller;
 
 import Model.GMailAuthenticator;
+import Model.User;
+
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
+import java.util.Formatter;
 import java.util.Properties;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.mail.*;
 import javax.mail.internet.*;
 import javax.servlet.ServletException;
@@ -24,8 +34,7 @@ import javax.servlet.http.HttpServletResponse;
 public class EmailServlet extends Forwarder {
 
     /**
-     * Handle an HTTP POST transaction for a drop or add.
-     *
+     * Handles forgotpassoword.jsp and recover the password based on email 
      * @param request The HTTP request object
      * @param response The HTTP response object
      */
@@ -60,18 +69,26 @@ public class EmailServlet extends Forwarder {
                 Session session = Session.getInstance(properties, new GMailAuthenticator("easyefo@gmail.com", "compscience"));
 
                 try {
+                    User emailUser = new User();
+                    emailUser.setEmail(to);
+                    Random ran = new Random();
+                    int randomint = ran.nextInt(999999999);
+                    emailUser.resetPassword(encodePassword(String.valueOf(randomint)));
+                    
                     MimeMessage message = new MimeMessage(session);
                     message.setFrom(new InternetAddress(from));
                     message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
                     message.setSubject("Password Recovery");
                     BodyPart messageBodyPart = new MimeBodyPart();
-                    messageBodyPart.setText("You have requested a password reset. Your password is:  ");
+                    messageBodyPart.setText("You have requested a password reset. Your password is: " + randomint);
                     Multipart multipart = new MimeMultipart();
                     multipart.addBodyPart(messageBodyPart);
                     message.setContent(multipart);
                     Transport.send(message);
                 } catch (MessagingException mex) {
                     mex.printStackTrace();
+                } catch (SQLException ex) {
+                    Logger.getLogger(EmailServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
                 nextView = "/index.jsp";
@@ -82,5 +99,21 @@ public class EmailServlet extends Forwarder {
             forwardTo(nextView, request, response);
         }
 
+    }
+    
+    private static String encodePassword(String password) {
+        try {
+            byte[] bytes = password.getBytes("UTF-8");
+            bytes = MessageDigest.getInstance("MD5").digest(bytes);
+            Formatter f = new Formatter();
+            for (byte b : bytes) {
+                f.format("%02x", b);
+            }
+            return f.toString();
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

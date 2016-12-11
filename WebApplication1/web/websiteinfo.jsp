@@ -89,14 +89,15 @@
                         </form>
                     </div>
                 </div>
-
+                  
+                    
                 <%
                     // comments 
                     ArrayList<Comment> comments = commentList.getCommentsBySite((int) session.getAttribute("siteid"));
                     for (int ii = 0; ii < comments.size(); ii++) {
                         int pos = ii + 1;
-                        out.println("<fieldset><legend>" + "Comment #" + pos);
-                        out.println("<p>" + comments.get(ii).getUsername());
+                        out.println("<fieldset><legend>" +  "Comment #" + pos);
+                        out.println("<p>" + comments.get(ii).getUsername()+"</p>");
                         out.println("<p>" + comments.get(ii).getCommentMade() + "</p>");
                         out.println("</legend></fieldset>");
                     }

@@ -12,7 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Encapsulates Comment table
  * @author hirstrb
  */
 public class Comment extends Database {
@@ -24,10 +24,21 @@ public class Comment extends Database {
     Date date;
     ArrayList<Comment> comments;
 
+    /**
+     * Default Constructor 
+     */
     public Comment() {
 
     }
 
+    /**
+     *  
+     * @param cID comment id 
+     * @param sID web site id 
+     * @param un username 
+     * @param comMade comment mad
+     * @param da Date 
+     */
     public Comment(int cID, int sID, String un, String comMade, Date da) {
         this.commentID = cID;
         this.siteID = sID;
@@ -35,47 +46,81 @@ public class Comment extends Database {
         this.commentMade = comMade;
         this.date = da;
     }
-
+    /**
+     * Get comment id 
+     * @return comment id 
+     */
     public int getCommentID() {
         return commentID;
     }
-
+    /**
+     * set comment id 
+     * @param commentID 
+     */
     public void setCommentID(int commentID) {
         this.commentID = commentID;
     }
-
+    /**
+     * Gets site ID 
+     * @return siteID 
+     */
     public int getSiteID() {
         return siteID;
     }
-
+    /**
+     * Set site ID 
+     * @param siteID 
+     */
     public void setSiteID(int siteID) {
         this.siteID = siteID;
     }
-
+    /**
+     * Get username
+     * @return username
+     */
     public String getUsername() {
         return username;
     }
-
+    /**
+     * Set username 
+     * @param username 
+     */
     public void setUsername(String username) {
         this.username = username;
     }
-
+    /**
+     * Gets comment made 
+     * @return commentMade
+     */
     public String getCommentMade() {
         return commentMade;
     }
-
+    /**
+     * Set comment made 
+     * @param commentMade 
+     */
     public void setCommentMade(String commentMade) {
         this.commentMade = commentMade;
     }
-
+    /**
+     * Get date 
+     * @return date 
+     */
     public Date getDate() {
         return date;
     }
-
+    /**
+     * Set date 
+     * @param date 
+     */
     public void setDate(Date date) {
         this.date = date;
     }
-
+    /**
+     * Gets an ArrayList based on the site id 
+     * @param id
+     * @return ArrayList 
+     */
     public ArrayList<Comment> getCommentsBySite(int id) {
         ArrayList<Comment> coms = new ArrayList<Comment>();
         Connection co = getConnection();
@@ -99,7 +144,10 @@ public class Comment extends Database {
         }
         return coms;
     }
-
+    /**
+     * Gets comments from comments table and encapsulates them 
+     * @return ArrayList with comments 
+     */
     public ArrayList<Comment> getComments() {
         ArrayList<Comment> all = new ArrayList<Comment>();
         Connection co = getConnection();
@@ -123,7 +171,10 @@ public class Comment extends Database {
         }
         return all;
     }
-
+    /**
+     * Insert Comment 
+     * @throws SQLException 
+     */
     public void insertComment() throws SQLException {
         int count = 0;
         Connection co = getConnection();

@@ -21,6 +21,16 @@ public class Credentials {
     private String gender;
     private ArrayList<Boolean> categories = new ArrayList<Boolean>();
 
+    /**
+     * Encapsulates user credentials 
+     * @param username
+     * @param firstname
+     * @param lastname
+     * @param age
+     * @param email
+     * @param gender
+     * @param categories 
+     */
     public Credentials(String username, String firstname, String lastname, int age, String email, String gender, ArrayList<Boolean> categories) {
         this.username = username;
         this.firstname = firstname;
@@ -30,7 +40,9 @@ public class Credentials {
         this.gender = gender;
         this.categories = categories;
     }
-
+    /**
+     * Default Constructor
+     */
     public Credentials() {
 
     }
@@ -132,7 +144,10 @@ public class Credentials {
     public void setCategories(ArrayList<Boolean> categories) {
         this.categories = categories;
     }
-    
+    /**
+     * Adds Category
+     * @param category 
+     */
     public void addCategories(Boolean category) {
         this.categories.add(category);
     }

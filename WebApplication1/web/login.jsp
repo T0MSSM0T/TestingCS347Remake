@@ -6,6 +6,9 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<!-- 
+    Login site 
+--> 
 <html>
     <head>
         <meta charset="utf-8">

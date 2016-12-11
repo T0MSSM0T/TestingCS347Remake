@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<!-- Navigation bar to be used before user logged in --> 
 <html>
     <head>
         <!-- Bootstrap Core CSS -->

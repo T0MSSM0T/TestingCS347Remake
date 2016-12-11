@@ -9,8 +9,12 @@ import Model.CategoryList;
 import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Formatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -28,8 +32,9 @@ import javax.servlet.http.HttpSession;
 public class EditUser extends Forwarder {
 
     /**
-     * Handles the HTTP <code>POST</code> method.
-     *
+     * Gets attributes from userinfo.jsp and updates the table with the new
+     * information 
+     * Edit the categories associated withe the user 
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -46,6 +51,7 @@ public class EditUser extends Forwarder {
 
         String username = (String) session.getAttribute("username");
         String firstname = request.getParameter("editfirstname");
+        String password = request.getParameter("editpassword");
         String lastname = request.getParameter("editlastname");
         String email = request.getParameter("editemail");
         String age = request.getParameter("editage");
@@ -77,7 +83,7 @@ public class EditUser extends Forwarder {
             }
         }
 
-        User edituser = new User(username, firstname, lastname, email, age, gender, categories);
+        User edituser = new User(username, encodePassword(password), firstname, lastname, email, age, gender, categories);
         try {
             edituser.editRegister();
         } catch (SQLException ex) {
@@ -87,4 +93,19 @@ public class EditUser extends Forwarder {
         forwardTo(nextView, request, response);
     }
 
+    private static String encodePassword(String password) {
+        try {
+            byte[] bytes = password.getBytes("UTF-8");
+            bytes = MessageDigest.getInstance("MD5").digest(bytes);
+            Formatter f = new Formatter();
+            for (byte b : bytes) {
+                f.format("%02x", b);
+            }
+            return f.toString();
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

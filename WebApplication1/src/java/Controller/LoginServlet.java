@@ -28,7 +28,8 @@ public class LoginServlet extends Forwarder {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>GET</code> method.
+     * Handles the login information and authenticates the user 
+     * Sets a new session with the corresponding information 
      *
      * @param request servlet request
      * @param response servlet response
