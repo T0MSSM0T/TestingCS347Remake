@@ -47,10 +47,9 @@
                                 out.println("<div align=\"middle\">");
                                 out.println("<p>" + posJJ + ". </p>");
                                 out.println("<p> Site: " + websites.get(jj).getSiteTitle() + "</p>");
-                                out.print("<iframe height=\"400\" width=\"50%\" align=\"middle\" src=\"http://" + websites.get(jj).getIFrame() + "\">" + "</iframe>");
-                                out.println("<p> Link: <a href=\"https://" + websites.get(jj).getHyperLink() + "\" style=\"color:blue;\">"
+                                out.print("<iframe height=\"400\" width=\"50%\" align=\"middle\" src=\"" + websites.get(jj).getIFrame() + "\">" + "</iframe>");
+                                out.println("<p> Link: <a href=\"" + websites.get(jj).getHyperLink() + "\" style=\"color:blue;\">"
                                         + websites.get(jj).getSiteTitle() + "</a></p>");
-                                out.println("<p> Ads: " + websites.get(jj).getAdCount() + "</p>");
                                 out.println("<p> Rating: " + websites.get(jj).getRating() + "</p>");
                                 
                                 //session.setAttribute(websites.get(jj).getSiteTitle(), websites.get(jj));

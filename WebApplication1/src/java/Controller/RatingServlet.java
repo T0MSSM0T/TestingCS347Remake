@@ -40,7 +40,7 @@ public class RatingServlet extends Forwarder  {
         HttpSession session = request.getSession();
         
         
-        String nextView = "/index.jsp";
+        String nextView = "/websiteinfo.jsp";
         
         int ratingID = 1;
         int siteID = (int) session.getAttribute("siteid");

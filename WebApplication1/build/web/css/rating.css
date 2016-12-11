@@ -8,7 +8,7 @@ and open the template in the editor.
     Author     : hirstrb
 */
 /* http://www.jquery2dotnet.com/ */
-body{ margin-top:20px;}
+body{ margin-top:20px; color:black;}
 .glyphicon { margin-right:5px;}
 .rating .glyphicon {font-size: 22px;}
 .rating-num { margin-top:0px;font-size: 54px; }

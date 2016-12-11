@@ -151,9 +151,9 @@ public class Rating extends Database {
         String sql = "INSERT INTO RatingsTable VALUES( ?, ?, ?, ?)"; 
         PreparedStatement ps = co.prepareStatement(sql);
         ps.setInt(1, rows);
-        ps.setInt(3, siteID);
-        ps.setString(4, username);
-        ps.setInt(5, rating);
+        ps.setInt(2, siteID);
+        ps.setString(3, username);
+        ps.setInt(4, rating);
         ps.executeUpdate();
     }
 }

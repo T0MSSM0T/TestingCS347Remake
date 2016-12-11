@@ -66,18 +66,9 @@
                     <div class="col-xs-10">
                         <div>
                             <jsp:include page="ratingBar.jsp"/>
-
-                            <form action="RatingServlet" method="POST">
-                                <select name="starRating" >
-                                    <option value="1">1 Stars</option>
-                                    <option value="2">2 Stars</option>
-                                    <option value="3">3 Stars</option>
-                                    <option value="4">4 Stars</option>
-                                    <option value="5">5 Stars</option>
-                                </select> 
-                                <input type="submit" name="action" value="Rate" class="btn btn-primary btn-lg btn-block" />
-                            </form>
                         </div>
+                        
+                        <a style="color:blue;" href="./rating.html">Rate this website</a>
                     </div>
                 </div>
 
