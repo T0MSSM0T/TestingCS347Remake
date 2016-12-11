@@ -77,7 +77,7 @@
                 </div>
 
                 <%
-                    ArrayList<Comment> comments = commentList.getComments();
+                    ArrayList<Comment> comments = commentList.getCommentsBySite((int) session.getAttribute("siteid"));
                     for (int ii = 0; ii < comments.size(); ii++) {
                         int pos = ii + 1;
                         out.println("<fieldset><legend>" + "Comment #" + pos);

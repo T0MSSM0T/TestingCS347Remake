@@ -61,7 +61,7 @@ public class CommentServlet extends Forwarder {
         String nextView = "/websiteinfo.jsp";
         
         int commentID = 1;
-        int siteID = 2;
+        int siteID = (int) session.getAttribute("siteid");
         
         String username = (String) session.getAttribute("username");
       
