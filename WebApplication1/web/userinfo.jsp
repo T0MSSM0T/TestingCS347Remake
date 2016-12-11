@@ -25,6 +25,7 @@
         //out.print("clicked = true");
         out.print("document.getElementById(\"firstname\").disabled = false;");
         out.print("document.getElementById(\"lastname\").disabled = false;");
+        out.print("document.getElementById(\"password\").disabled = false;");
         out.print("document.getElementById(\"age\").disabled = false;");
         out.print("document.getElementById(\"email\").disabled = false;");
         out.print("document.getElementById(\"gender\").disabled = false;");
@@ -52,6 +53,13 @@
                     <label for="example-text-input" class="col-xs-2 col-form-label">Username:</label>
                     <div class="col-xs-10">
                         <input class="form-control" type="text" value="<%=session.getAttribute("username")%>" name="editusername" id="username" disabled="true" >
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="example-search-input" class="col-xs-2 col-form-label">Password:</label>
+                    <div class="col-xs-10">
+                        <input class="form-control" type="password" value="**********" name="editpassword" id="password" disabled="true">
                     </div>
                 </div>
 
@@ -114,7 +122,7 @@
 
                 <button type="button" onclick="enable()" value="" class="btn btn-primary btn-lg">Edit</button>
                 <button type="submit" value="" class="btn btn-primary btn-lg">Save</button>
-                <button type="button" value="" class="btn btn-primary btn-lg">Cancel</button>
+                <a href="userinfo.jsp" type="button" value="" class="btn btn-primary btn-lg">Cancel</a>
             </form>   
             <!--/.FORM -->  
 
