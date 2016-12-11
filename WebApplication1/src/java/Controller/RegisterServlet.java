@@ -73,7 +73,7 @@ public class RegisterServlet extends Forwarder {
         }
 
         String hash = encodePassword(password);
-        User register = new User(username, hash, hash, firstname, lastname, email, age, gender, fav);
+        User register = new User(username, hash, firstname, lastname, email, age, gender, fav);
         try {
             if(!register.insertRegister())
             {
