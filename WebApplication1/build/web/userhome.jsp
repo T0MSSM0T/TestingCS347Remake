@@ -45,6 +45,11 @@
                                         + websites.get(jj).getSiteTitle() + "</a></p>");
                                 out.println("<p> Ads: " + websites.get(jj).getAdCount() + "</p>");
                                 out.println("<p> Rating: " + websites.get(jj).getRating() + "</p>");
+                                
+                                out.println("<a href=\"WebsiteServlet?title="+websites.get(jj).getSiteTitle()
+                                         + "&link="+websites.get(jj).getHyperLink()+"&rating="+websites.get(jj).getRating()+""
+                                         + "&id="+websites.get(jj).getSiteID()+"&notes="+websites.get(jj).getNotes()+""
+                                         + "  \"><button class = \"btn btn-primary btn-lg active\">Info Site</button></a>"); 
                             }
 
                             out.println("</div></fieldset>");
