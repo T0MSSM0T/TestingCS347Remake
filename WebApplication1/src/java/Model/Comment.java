@@ -185,13 +185,12 @@ public class Comment extends Database {
 
         int rows = res.getInt("COUNT(*)") + 1;
 
-        String sql = "INSERT INTO CommentsTable VALUES(?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO CommentsTable VALUES(?, ?, ?, ?)";
         PreparedStatement ps = co.prepareStatement(sql);
         ps.setInt(1, rows);
         ps.setInt(2, siteID);
         ps.setString(3, username);
         ps.setString(4, commentMade);
-        ps.setDate(5, null);
         ps.executeUpdate();
     }
 }
