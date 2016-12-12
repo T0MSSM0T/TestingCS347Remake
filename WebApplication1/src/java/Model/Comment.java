@@ -21,7 +21,6 @@ public class Comment extends Database {
     int siteID;
     String username;
     String commentMade;
-    Date date;
     ArrayList<Comment> comments;
 
     /**
@@ -39,12 +38,11 @@ public class Comment extends Database {
      * @param comMade comment mad
      * @param da Date 
      */
-    public Comment(int cID, int sID, String un, String comMade, Date da) {
+    public Comment(int cID, int sID, String un, String comMade) {
         this.commentID = cID;
         this.siteID = sID;
         this.username = un;
         this.commentMade = comMade;
-        this.date = da;
     }
     /**
      * Get comment id 
@@ -95,27 +93,8 @@ public class Comment extends Database {
     public String getCommentMade() {
         return commentMade;
     }
-    /**
-     * Set comment made 
-     * @param commentMade 
-     */
-    public void setCommentMade(String commentMade) {
-        this.commentMade = commentMade;
-    }
-    /**
-     * Get date 
-     * @return date 
-     */
-    public Date getDate() {
-        return date;
-    }
-    /**
-     * Set date 
-     * @param date 
-     */
-    public void setDate(Date date) {
-        this.date = date;
-    }
+  
+ 
     /**
      * Gets an ArrayList based on the site id 
      * @param id
@@ -134,9 +113,8 @@ public class Comment extends Database {
                 int sID = rs.getInt(2);
                 String un = rs.getString(3);
                 String comMade = rs.getString(4);
-                Date da = rs.getDate(5);
 
-                Comment com = new Comment(cID, sID, un, comMade, da);
+                Comment com = new Comment(cID, sID, un, comMade);
                 coms.add(com);
             }
         } catch (SQLException ex) {
@@ -161,9 +139,8 @@ public class Comment extends Database {
                 int sID = rs.getInt(2);
                 String un = rs.getString(3);
                 String comMade = rs.getString(4);
-                Date da = rs.getDate(5);
 
-                Comment com = new Comment(cID, sID, un, comMade, da);
+                Comment com = new Comment(cID, sID, un, comMade);
                 all.add(com);
             }
         } catch (SQLException ex) {

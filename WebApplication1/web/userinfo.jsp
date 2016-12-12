@@ -124,7 +124,7 @@
                     </fieldset>
                 </div><!--jumbotron-->
 
-                <button type="button" onclick="enable()" value="" class="btn btn-primary btn-lg">Edit</button>
+                <button type="button" onclick="enableField()" value="" class="btn btn-primary btn-lg">Edit</button>
                 <button type="submit" value="" class="btn btn-primary btn-lg">Save</button>
                 <a href="userinfo.jsp" type="button" value="" class="btn btn-primary btn-lg">Cancel</a>
                 <a href="editPassword.jsp" type="button" class="btn btn-primary btn-lg" >Change Password</a>

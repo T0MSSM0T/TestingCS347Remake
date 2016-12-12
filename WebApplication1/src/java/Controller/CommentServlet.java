@@ -67,7 +67,7 @@ public class CommentServlet extends Forwarder {
 
         String comMade = request.getParameter("commentText");
 
-        Comment comment = new Comment(commentID, siteID, username, comMade, null);
+        Comment comment = new Comment(commentID, siteID, username, comMade);
         try {
             comment.insertComment();
         } catch (SQLException ex) {
