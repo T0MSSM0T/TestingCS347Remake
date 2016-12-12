@@ -1,3 +1,4 @@
+<%@page import="java.io.IOException"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.User"%>
 <jsp:useBean class="Model.User" id="curUser" scope="session"/>
@@ -15,27 +16,37 @@
         <link rel="shortcut icon" href="logo.png"/>
         <title>User Info</title>
     </head>
-    <%
-        /**
-         * Enables the editing feature
-         */
-        out.print("<script type=\"text/javascript\">");
-        //out.print("var clicked = false");
-        out.print("function enable(){");
-        //out.print("clicked = true");
-        out.print("document.getElementById(\"firstname\").disabled = false;");
-        out.print("document.getElementById(\"lastname\").disabled = false;");
-        out.print("document.getElementById(\"password\").disabled = false;");
-        out.print("document.getElementById(\"age\").disabled = false;");
-        out.print("document.getElementById(\"email\").disabled = false;");
-        out.print("document.getElementById(\"gender\").disabled = false;");
 
-        ArrayList<String> list = CL.getCategories();
-        for (int i = 0; i < list.size(); i++) {
-            out.print("document.getElementById(\"" + list.get(i) + "\").disabled = false;");
+    <%
+        try {
+            Boolean loggedIn = (Boolean) session.getAttribute("logged_in");
+            if (loggedIn == null || !loggedIn) {
+                response.sendRedirect(request.getContextPath());   // go to the home page
+            } else {
+                /**
+                 * Enables the editing feature
+                 */
+                out.print("<script type=\"text/javascript\">");
+                //out.print("var clicked = false");
+                out.print("function enable(){");
+                //out.print("clicked = true");
+                out.print("document.getElementById(\"firstname\").disabled = false;");
+                out.print("document.getElementById(\"lastname\").disabled = false;");
+                out.print("document.getElementById(\"age\").disabled = false;");
+                out.print("document.getElementById(\"email\").disabled = false;");
+                out.print("document.getElementById(\"gender\").disabled = false;");
+
+                ArrayList<String> list = CL.getCategories();
+                for (int i = 0; i < list.size(); i++) {
+                    out.print("document.getElementById(\"" + list.get(i) + "\").disabled = false;");
+                }
+                out.print("}</script>");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        out.print("}</script>");
     %>
+
 
 
 
@@ -71,14 +82,14 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="example-url-input" class="col-xs-2 col-form-label">Age:</label>
+                    <label for="example-search-input" class="col-xs-2 col-form-label">Age:</label>
                     <div class="col-xs-10">
                         <input class="form-control" type="text" value="<%=session.getAttribute("age")%>" name="editage" id="age" disabled="true">
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="example-url-input" class="col-xs-2 col-form-label">Email:</label>
+                    <label for="example-search-input" class="col-xs-2 col-form-label">Email:</label>
                     <div class="col-xs-10">
                         <input class="form-control" type="text" value="<%=session.getAttribute("email")%>" name="editemail" id="email" disabled="true">
                     </div>
@@ -95,12 +106,12 @@
                 <div style="background-color:#E5E4E2 !important;" class="jumbotron">
                     <fieldset>
                         <%
-
+                            ArrayList<String> list = CL.getCategories();
                             for (int i = 0; i < list.size(); i++) {
                                 out.println("<div class=\"custom-control-input\">");
                                 out.print("\t<input id=\"" + list.get(i) + "\" ");
                                 out.print("name=\"checkedit" + list.get(i) + "\" ");
-                                if ((Boolean) session.getAttribute(list.get(i))) {
+                                if (Boolean.parseBoolean(session.getAttribute(list.get(i)).toString())) {
                                     out.print("checked ");
                                 }
                                 out.println("type=\"checkbox\" disabled=\"true\"");

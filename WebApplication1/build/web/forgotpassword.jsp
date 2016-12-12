@@ -18,7 +18,7 @@
         
         <script type="text/javascript">
             function sendPassword() {
-                var msg = alert("An email has been set with a link to reset your password.");
+                var msg = alert("An email has been set with a temporary password.");
             }
         </script>
         

@@ -4,6 +4,7 @@
     Author     : hirstrb
 --%>
 
+<%@page import="java.io.IOException"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,25 +14,37 @@
 
         <script type="text/JavaScript">
 
-                function validatePassword()
-                {
-                var match = true
-                var password = get('password').value
-                var passwordConfirm = get('passwordcnfm').value
-                get('passwordcnfmerr').innerHTML = ''
+            function validatePassword()
+            {
+            var match = true
+            var password = get('password').value
+            var passwordConfirm = get('passwordcnfm').value
+            get('passwordcnfmerr').innerHTML = ''
 
-                if (password != passwordConfirm){
-                get('passwordcnfmerr').innerHTML = 'Passwords do not match'
-                match = false
-                }
+            if (password != passwordConfirm){
+            get('passwordcnfmerr').innerHTML = 'Passwords do not match'
+            match = false
+            }
 
-                return match
-                }
+            return match
+            }
 
-                function get(id) { return document.getElementById(id) }
+            function get(id) { return document.getElementById(id) }
 
-            </script>
+        </script>
     </head>
+    <%
+        try {
+            Boolean loggedIn = (Boolean) session.getAttribute("logged_in");
+            if (loggedIn == null || !loggedIn) {
+                response.sendRedirect(request.getContextPath());   // go to the home page
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    %>
+    
     <body>
         <div>
             <jsp:include page="menubar.jsp"/>
@@ -49,7 +62,7 @@
                         <input class="form-control" type="password" name="password" id="password">
                     </div>
                 </div>
-                
+
                 <div class="form-group row">
                     <label for="example-text-input" class="col-xs-2 col-form-label">Confirm Password:</label>
                     <div class="col-xs-6">
@@ -57,7 +70,7 @@
                         <span id="passwordcnfmerr" class="errmsg"> </span>
                     </div>
                 </div>
-                
+
                 <input type="submit" class="btn btn-primary btn-lg btn-group-vertical" name="action" value="Save"/>
 
             </form> 

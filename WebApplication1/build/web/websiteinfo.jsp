@@ -68,7 +68,7 @@
                             <jsp:include page="ratingBar.jsp"/>
                         </div>
                         
-                        <a style="color:blue;" href="./rating.html">Rate this website</a>
+                        <a style="color:blue;" href="./rating.jsp">Rate this website</a>
                     </div>
                 </div>
 

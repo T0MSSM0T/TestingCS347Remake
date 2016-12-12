@@ -50,7 +50,7 @@
                                 out.println("<a href=\"WebsiteServlet?title=" + websites.get(jj).getSiteTitle()
                                         + "&link=" + websites.get(jj).getHyperLink() + "&rating=" + websites.get(jj).getRating() + ""
                                         + "&id=" + websites.get(jj).getSiteID() + "&notes=" + websites.get(jj).getNotes() + ""
-                                        + "  \"><button class = \"btn btn-primary btn-lg active\">Info Site</button></a>");
+                                        + "  \"><button class = \"btn btn-primary btn-lg active\">Info</button></a>");
 
                             }
 
