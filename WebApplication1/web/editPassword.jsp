@@ -13,42 +13,63 @@
 
         <script type="text/JavaScript">
 
-            function validatePassword()
-            {
-            var match = true
-            var password = get('password').value
-            var passwordConfirm = get('passwordcnfm').value
-            get('passwordcnfmerr').innerHTML = ''
+                function validatePassword()
+                {
+                var match = true
+                var password = get('password').value
+                var passwordConfirm = get('passwordcnfm').value
+                get('passwordcnfmerr').innerHTML = ''
 
-            if (password != passwordConfirm){
-            get('passwordcnfmerr').innerHTML = 'Passwords do not match'
-            match = false
-            }
+                if (password != passwordConfirm){
+                get('passwordcnfmerr').innerHTML = 'Passwords do not match'
+                match = false
+                }
 
-            return match
-            }
+                return match
+                }
 
-            function get(id) { return document.getElementById(id) }
+                function get(id) { return document.getElementById(id) }
 
-        </script>
+            </script>
     </head>
     <body>
-        <form action="PasswordServlet" method="POST" onsubmit="return validatePassword()">
-            <div>
-                <input type="password" name="currentPasswordToChange">Current Password</input>
-            </div>
+        <div>
+            <jsp:include page="menubar.jsp"/>
+        </div>
+        <!-- Page Content -->
+        <div class="container">
+            <br/><br/>
 
-            <div>
-                <input type="password" name="newPass">New Password</input>
-            </div>
+            <!--FORM --> 
+            <form action="PasswordServlet" method="POST" onsubmit="return validatePassword()">
 
-            <div>
-                <input type="password" name="confPass">Confirm Password</input>
-            </div>
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-xs-2 col-form-label">New Password:</label>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="password" name="password" id="password">
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-xs-2 col-form-label">Confirm Password:</label>
+                    <div class="col-xs-6">
+                        <input class="form-control" type="password" name="passwordcnfm" id="passwordcnfm">
+                        <span id="passwordcnfmerr" class="errmsg"> </span>
+                    </div>
+                </div>
+                
+                <input type="submit" class="btn btn-primary btn-lg btn-group-vertical" name="action" value="Save"/>
 
-            <div>
-                <button type="submit" name="action" class="btn btn-primary btn-lg">Change Password</button>
-            </div>
-        </form>
+            </form> 
+            <!--/.FORM -->   
+
+        </div><!--container--> 
+        <!--/.CATEGORIES --> 
+
+        <!-- jQuery -->
+        <script src="js/jquery.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.js"></script>
     </body>
 </html>
