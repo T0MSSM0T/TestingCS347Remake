@@ -46,7 +46,7 @@ public class PasswordServlet extends Forwarder {
             HttpSession session = request.getSession();
             String username = session.getAttribute("username").toString();
             
-            String newPass = request.getParameter("confPass");
+            String newPass = request.getParameter("passwordcnfm");
             
             User user = new User();
             user.setUsername(username);
