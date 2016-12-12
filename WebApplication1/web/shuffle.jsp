@@ -43,9 +43,7 @@
                         Integer randomInt = rand.nextInt(sites.size());
                         Website chosen = sites.get(randomInt);
                         out.print("<iframe height=\"600\" width=\"100%\" align=\"middle\" src=\"" + chosen.getIFrame() + "\">" + "</iframe>");
-                        out.print("<label style=\"padding-top: 1%;\">Random Int:</label>" + " " + randomInt);
-                        out.print("<hr>");
-                        out.print("<label>Website:</label>" + " " + chosen.getSiteTitle());
+                        out.print("<label style=\"padding-top: 1%;\">Website:</label>" + " " + chosen.getSiteTitle());
                         out.print("<hr>");
                         out.print("<label>Ad Count:</label>" + " " + chosen.getAdCount());
                         out.print("<hr>");
