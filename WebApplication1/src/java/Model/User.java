@@ -184,13 +184,23 @@ public class User extends Database {
         sts1.setString(1, newPass);
         sts1.executeUpdate();
     }
+    
+    public void editPassword(String newPass) throws SQLException {
+        Connection co = getConnection();
+        
+        String query = "UPDATE UserTable SET password = ? WHERE Username = " + "'" + username + "'";
+        PreparedStatement sts = co.prepareStatement(query);
+        sts.setString(1, newPass);
+        sts.executeUpdate();
+    }
+    
     /**
      * Edit user based on username
      * @throws SQLException 
      */
     public void editRegister() throws SQLException {
         Connection con = getConnection();
-        String selectrow = "UPDATE UserTable SET Email = ? , FirstName = ? , LastName = ? ,Age = ? , Gender = ? , Password = ? WHERE Username = '" + username + "'";
+        String selectrow = "UPDATE UserTable SET Email = ? , FirstName = ? , LastName = ? ,Age = ? , Gender = ? WHERE Username = '" + username + "'";
         String query = "SELECT * FROM UserTable WHERE Username = '" + username + "'";
         Statement sts1 = con.createStatement();
         ResultSet result;
@@ -203,7 +213,6 @@ public class User extends Database {
         sts2.setString(3, lastname);
         sts2.setInt(4, age);
         sts2.setString(5, gender);
-        sts2.setString(6, password);
         sts2.executeUpdate();  //(selectrow);
 
         CategoryList obj = new CategoryList();

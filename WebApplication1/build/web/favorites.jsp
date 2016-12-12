@@ -16,17 +16,18 @@
         <title>Favorites</title>
 
     </head>
-  
+
     <body>
         <div>
             <jsp:include page="menubar.jsp"/> 
-           
+
         </div>
-       
+
         <%
-        /**
-         * Displays websites retrived from database based on the user's favorite categories
-         */
+            /**
+             * Displays websites retrived from database based on the user's
+             * favorite categories
+             */
             try {
                 Boolean loggedIn = (Boolean) session.getAttribute("logged_in");
                 if (loggedIn == null || !loggedIn) {
@@ -40,27 +41,23 @@
                         int pos = ii + 1;
                         if (items.get(ii).equals("true")) {
                             ArrayList<Website> websites = websiteList.getCategoryWebsites(pos);
-
+                            out.println("<fielset><legend> " + catList.get(ii).toString() + "</legend>");
                             for (int jj = 0; jj < websites.size(); jj++) {
                                 int posJJ = jj + 1;
-                                //out.println("<form action=\"CommentServlet\" method=\"POST\">"); 
                                 out.println("<div align=\"middle\">");
                                 out.println("<p>" + posJJ + ". </p>");
                                 out.println("<p> Site: " + websites.get(jj).getSiteTitle() + "</p>");
                                 out.print("<iframe height=\"400\" width=\"50%\" align=\"middle\" src=\"" + websites.get(jj).getIFrame() + "\">" + "</iframe>");
                                 out.println("<p> Link: <a href=\"" + websites.get(jj).getHyperLink() + "\" style=\"color:blue;\">"
                                         + websites.get(jj).getSiteTitle() + "</a></p>");
-                                out.println("<p> Rating: " + websites.get(jj).getRating() + "</p>");
-                                
-                                //session.setAttribute(websites.get(jj).getSiteTitle(), websites.get(jj));
-                                session.setAttribute(jj+"",websites.get(jj));
-                                //out.println("<form>");
-                                 out.println("<a href=\"WebsiteServlet?title="+websites.get(jj).getSiteTitle()
-                                         + "&link="+websites.get(jj).getHyperLink()+"&rating="+websites.get(jj).getRating()+""
-                                         + "&id="+websites.get(jj).getSiteID()+"&notes="+websites.get(jj).getNotes()+""
-                                         + "  \"><button class = \"btn btn-primary btn-lg active\">Info Site</button></a>"); 
-                                //out.println("<button type=\"submit\" onClick=\"getsite()\">Info</button> ");
+
+                                session.setAttribute(jj + "", websites.get(jj));
+                                out.println("<a href=\"WebsiteServlet?title=" + websites.get(jj).getSiteTitle()
+                                        + "&link=" + websites.get(jj).getHyperLink() + "&rating=" + websites.get(jj).getRating() + ""
+                                        + "&id=" + websites.get(jj).getSiteID() + "&notes=" + websites.get(jj).getNotes() + ""
+                                        + "  \"><button class = \"btn btn-primary btn-lg active\">Info</button></a>");
                             }
+                            out.println("</fieldset>");
                         }
                     }
                 }

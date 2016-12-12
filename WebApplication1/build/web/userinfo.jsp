@@ -57,13 +57,6 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="example-search-input" class="col-xs-2 col-form-label">Password:</label>
-                    <div class="col-xs-10">
-                        <input class="form-control" type="password" value="**********" name="editpassword" id="password" disabled="true">
-                    </div>
-                </div>
-
-                <div class="form-group row">
                     <label for="example-search-input" class="col-xs-2 col-form-label">First Name:</label>
                     <div class="col-xs-10">
                         <input class="form-control" type="text" value="<%=session.getAttribute("firstname")%>" name="editfirstname" id="firstname" disabled="true">
@@ -102,7 +95,7 @@
                 <div style="background-color:#E5E4E2 !important;" class="jumbotron">
                     <fieldset>
                         <%
-                    
+
                             for (int i = 0; i < list.size(); i++) {
                                 out.println("<div class=\"custom-control-input\">");
                                 out.print("\t<input id=\"" + list.get(i) + "\" ");
@@ -123,6 +116,7 @@
                 <button type="button" onclick="enable()" value="" class="btn btn-primary btn-lg">Edit</button>
                 <button type="submit" value="" class="btn btn-primary btn-lg">Save</button>
                 <a href="userinfo.jsp" type="button" value="" class="btn btn-primary btn-lg">Cancel</a>
+                <a href="editPassword.jsp" type="button" class="btn btn-primary btn-lg" >Change Password</a>
             </form>   
             <!--/.FORM -->  
 

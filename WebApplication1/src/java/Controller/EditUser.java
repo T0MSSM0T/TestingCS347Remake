@@ -51,7 +51,6 @@ public class EditUser extends Forwarder {
 
         String username = (String) session.getAttribute("username");
         String firstname = request.getParameter("editfirstname");
-        String password = request.getParameter("editpassword");
         String lastname = request.getParameter("editlastname");
         String email = request.getParameter("editemail");
         String age = request.getParameter("editage");
@@ -83,7 +82,7 @@ public class EditUser extends Forwarder {
             }
         }
 
-        User edituser = new User(username, encodePassword(password), firstname, lastname, email, age, gender, categories);
+        User edituser = new User(username, firstname, lastname, email, age, gender, categories);
         try {
             edituser.editRegister();
         } catch (SQLException ex) {

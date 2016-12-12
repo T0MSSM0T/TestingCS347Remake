@@ -42,7 +42,7 @@
                         ArrayList<Website> sites = websiteList.getWebsites();
                         Integer randomInt = rand.nextInt(sites.size());
                         Website chosen = sites.get(randomInt);
-                        out.print("<iframe height=\"600\" width=\"100%\" align=\"middle\" src=\"https://" + chosen.getIFrame() + "\">" + "</iframe>");
+                        out.print("<iframe height=\"600\" width=\"100%\" align=\"middle\" src=\"" + chosen.getIFrame() + "\">" + "</iframe>");
                         out.print("<label style=\"padding-top: 1%;\">Random Int:</label>" + " " + randomInt);
                         out.print("<hr>");
                         out.print("<label>Website:</label>" + " " + chosen.getSiteTitle());
@@ -53,7 +53,7 @@
                         out.print("<hr>");
                         out.print("<label>Category:</label>" + " " + chosen.getCategoryIDLink());
                         out.print("<hr>");
-                        out.print("<label style=\"padding-bottom: 3%;\">Link:</label>" + " " + "<a href=\"http://" + chosen.getHyperLink() + "\"style=\"color: blue;\">" + chosen.getSiteTitle() + "</a>");
+                        out.print("<label style=\"padding-bottom: 3%;\">Link:</label>" + " " + "<a href=\"" + chosen.getHyperLink() + "\"style=\"color: blue;\">" + chosen.getSiteTitle() + "</a>");
                     }
                 }
                 catch (IOException e) {

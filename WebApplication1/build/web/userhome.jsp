@@ -24,7 +24,7 @@
         <ul>
             <%
                 /**
-                 * Displays websites based on the user's favorite categories 
+                 * Displays websites based on the user's favorite categories
                  */
                 try {
                     Boolean loggedIn = (Boolean) session.getAttribute("logged_in");
@@ -45,12 +45,13 @@
                                 out.print("<iframe height=\"400\" width=\"50%\" align=\"middle\" src=\"" + websites.get(jj).getIFrame() + "\">" + "</iframe>");
                                 out.println("<p> Link: <a href=\"" + websites.get(jj).getHyperLink() + "\" style=\"color:blue;\">"
                                         + websites.get(jj).getSiteTitle() + "</a></p>");
-                                out.println("<p> Rating: " + websites.get(jj).getRating() + "</p>");
+                                out.println("<p> " + websites.get(jj).getNotes() + "</p>");
                                 
-                                out.println("<a href=\"WebsiteServlet?title="+websites.get(jj).getSiteTitle()
-                                         + "&link="+websites.get(jj).getHyperLink()+"&rating="+websites.get(jj).getRating()+""
-                                         + "&id="+websites.get(jj).getSiteID()+"&notes="+websites.get(jj).getNotes()+""
-                                         + "  \"><button class = \"btn btn-primary btn-lg active\">Info Site</button></a>"); 
+                                out.println("<a href=\"WebsiteServlet?title=" + websites.get(jj).getSiteTitle()
+                                        + "&link=" + websites.get(jj).getHyperLink() + "&rating=" + websites.get(jj).getRating() + ""
+                                        + "&id=" + websites.get(jj).getSiteID() + "&notes=" + websites.get(jj).getNotes() + ""
+                                        + "  \"><button class = \"btn btn-primary btn-lg active\">Info Site</button></a>");
+
                             }
 
                             out.println("</div></fieldset>");
